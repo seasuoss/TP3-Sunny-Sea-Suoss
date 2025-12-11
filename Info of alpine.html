@@ -1,55 +1,81 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Alpine - Info</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine - F1</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-	<header class="navbar">
-		<div class="logo">
-			<img src="image/f1logo.png" alt="Logo F1">
-		</div>
-		<nav class="menu">
-			<a href="Connexion.html">Connexion</a>
-			<a href="Inscription.html">S'inscrire</a>
-			<div class="dropdown">
-				<button class="dropdown-btn">Équipes F1 ▼</button>
-				<div class="dropdown-content">
-					<a href="Info of mercedes.html">Mercedes</a>
-					<a href="Info of ferrari.html">Ferrari</a>
-					<a href="Info of aston martin.html">Aston Martin</a>
-					<a href="Info of redbull.html">RedBull</a>
-					<a href="Info of mclaren.html">McLaren</a>
-					<a href="Info of alpine.html">Alpine</a>
-				</div>
-			</div>
-		</nav>
-	</header>
+    <!-- ===== NAVIGATION ===== -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="image/f1logo.png" alt="Logo F1">
+        </div>
 
-	<section class="content">
-		<h1>Alpine</h1>
-		<p class="description">Page d'information sur l'équipe Alpine. Ajoutez ici des détails et des images.</p>
-	</section>
+        <nav class="menu">
+            <div class="dropdown">
+                <button class="dropdown-btn">Équipes F1 ▼</button>
 
-	<footer>
-		<div class="footer-left">
-			<div class="socials">
-				<img src="image/logo reseau-sociau/logofacebook.png" alt="Facebook">
-				<img src="image/logo reseau-sociau/logoinstagram.png" alt="Instagram">
-				<img src="image/logo reseau-sociau/logoX.png" alt="X">
-			</div>
-		</div>
-		<div class="footer-center">
-			<p>© 2003–2025 Formula One World Championship Limited</p>
-			<p>Adresse: Bois de Boulogne, 75016 Paris, France</p>
-		</div>
-		<div class="footer-right">
-			<a class="contact" href="Contact.html">Contactez-nous</a>
-		</div>
-	</footer>
+                <div class="dropdown-content">
+                    <a href="Info of mercedes.html">Mercedes</a>
+                    <a href="Info of ferrari.html">Ferrari</a>
+                    <a href="Info of aston martin.html">Aston Martin</a>
+                    <a href="Info of redbull.html">RedBull</a>
+                    <a href="Info of mclaren.html">McLaren</a>
+                    <a href="Info of alpine.html">Alpine</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== IMAGE DE FOND ===== -->
+    <div class="background">
+        
+        <img src="image/Alpine/arriereplan-alpine.png" alt="Alpine Background">
+    </div>
+
+    <!-- ===== CONTENU PRINCIPAL ===== -->
+    <main class="content">
+
+        <h1>Alpine</h1>
+
+        <!-- Image de l'équipe -->
+        <div class="team-photo">
+            <img src="image/Alpine/gangalpine.png" alt="Alpine Team">
+        </div>
+
+        <!-- Texte descriptif -->
+        <p class="description">
+            Alpine s'appuie sur l'héritage Renault en F1, mêlant savoir-faire technique français et ambition de rivaliser au plus haut niveau.
+        </p>
+
+        <!-- Image de la voiture -->
+        <div class="car-photo">
+            <img src="image/Alpine/voiturealpine.png" alt="Alpine F1">
+            <span class="speed">193 mph (310 kph)</span>
+        </div>
+
+        <p class="description2">
+            Les monoplaces Alpine mettent en avant leur moteur et une aérodynamique fine héritée de l'expérience en Grand Prix.
+        </p>
+
+        <a class="return" href="Acceuil.html">Retour à l'accueil</a>
+    </main>
+
+    <!-- ===== PIED DE PAGE ===== -->
+    <footer>
+        <div class="footer-center">
+            <p>© 2003–2025 Formula One World Championship Limited</p>
+            <p>Adresse: Bois de Boulogne, 75016 Paris, France</p>
+        </div>
+        <div class="footer-right">
+            <a class="contact" href="Contact.html">Contactez-nous</a>
+        </div>
+    </footer>
 
 </body>
 </html>
