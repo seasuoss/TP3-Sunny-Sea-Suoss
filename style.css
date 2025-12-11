@@ -12,6 +12,7 @@ a {
     color: white;
     text-decoration: none;
 }
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -19,9 +20,9 @@ a {
     padding: 15px 40px;
     background-color: #0c0c10;
     gap: 20px;
+    position: relative;
+    z-index: 10;
 }
-
-
 
 .logo img {
     height: 150px;
@@ -30,7 +31,7 @@ a {
 
 .logo {
     display: flex;
-    
+    align-items: center;
     font-size: 22px;
     font-weight: bold;
 }
@@ -78,6 +79,7 @@ a {
     background: #111;
     border-radius: 5px;
     padding: 5px 0;
+    min-width: 150px;
 }
 
 .dropdown-content a {
@@ -88,7 +90,6 @@ a {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
 
 .hero img {
     width: 100%;
@@ -104,7 +105,6 @@ a {
     font-size: 20px;
     border-radius: 10px;
 }
-
 
 .teams {
     padding: 40px;
@@ -197,7 +197,6 @@ a {
 
 
 footer {
-    margin-top: 50px;
     padding: 30px;
     background: #0c0c10;
     display: flex;
@@ -210,6 +209,7 @@ footer {
     right: 0;
     width: 100%;
     z-index: 100;
+    text-align: center;
 }
 
 .footer-left {
@@ -242,6 +242,7 @@ footer {
 
 .contact {
     display: inline-block;
+    margin-top: 10px;
     padding: 10px 20px;
     background: #15151a;
     border-radius: 5px;
@@ -387,5 +388,4 @@ footer {
 .contact {
     display: block;
     margin-top: 10px;
-    color: #ccccff;
 }
