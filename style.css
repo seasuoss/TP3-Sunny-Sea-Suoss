@@ -253,3 +253,144 @@ footer {
 .contact:hover {
     background: #1a1a20;
 }
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    background: #0b0d0c;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0c0c10;
+    padding: 15px 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #111;
+    border-radius: 5px;
+    padding: 5px 0;
+    min-width: 150px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+}
+
+.background img {
+    width: 100%;
+    height: auto;
+    margin-top: -50px;
+    opacity: 0.4;
+    position: absolute;
+    z-index: -1;
+}
+
+.content {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.team-photo img {
+    width: 350px;
+    border-radius: 20px;
+}
+
+.description {
+    width: 60%;
+    margin: 20px auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.car-photo {
+    margin: 40px auto 20px;
+    position: relative;
+    width: 350px;
+}
+
+.car-photo img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.speed {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,255,255,0.2);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.description2 {
+    width: 60%;
+    margin: 10px auto 40px;
+    font-size: 18px;
+}
+
+.return {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+    background: #0c0c10;
+}
+
+.contact {
+    display: block;
+    margin-top: 10px;
+    color: #ccccff;
+}
