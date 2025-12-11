@@ -6,15 +6,13 @@
     <title>Inscription</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-inscription">
 
     <header class="navbar">
         <div class="logo">
-            <img src="image/f1logo.png" alt="Logo F1">
+            <a href="Acceuil.html"><img src="image/f1logo.png" alt="Logo F1"></a>
         </div>
         <nav class="menu">
-            <a href="Connexion.html">Connexion</a>
-            <a href="Inscription.html">S'inscrire</a>
             <div class="dropdown">
                 <button class="dropdown-btn">Équipes F1 ▼</button>
                 <div class="dropdown-content">
@@ -29,10 +27,24 @@
         </nav>
     </header>
 
-    <section class="content">
-        <h1>Inscription</h1>
-        <p class="description">Formulaire d'inscription ici.</p>
-    </section>
+    <main class="auth-container">
+        <h1>INSCRIPTION</h1>
+        <form class="auth-form">
+            <label for="signup-username">Nom d'utilisateur:</label>
+            <input id="signup-username" name="username" type="text" autocomplete="username">
+
+            <label for="signup-fullname">Nom Complet:</label>
+            <input id="signup-fullname" name="fullname" type="text" autocomplete="name">
+
+            <label for="signup-email">Email:</label>
+            <input id="signup-email" name="email" type="email" autocomplete="email">
+
+            <label for="signup-password">Mot de passe:</label>
+            <input id="signup-password" name="password" type="password" autocomplete="new-password">
+
+            <button type="submit" class="btn-auth">Continuer</button>
+        </form>
+    </main>
 
     <footer>
         <div class="footer-left">
@@ -46,9 +58,7 @@
             <p>© 2003–2025 Formula One World Championship Limited</p>
             <p>Adresse: Bois de Boulogne, 75016 Paris, France</p>
         </div>
-        <div class="footer-right">
-            <a class="contact" href="Contact.html">Contactez-nous</a>
-        </div>
+        <div class="footer-right"></div>
     </footer>
 
 </body>

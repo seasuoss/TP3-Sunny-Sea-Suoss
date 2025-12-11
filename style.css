@@ -27,6 +27,18 @@ a {
 .logo img {
     height: 150px;
     margin-right: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.logo a {
+    display: inline-block;
+    line-height: 0;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+    opacity: 0.85;
+    cursor: pointer;
 }
 
 .logo {
@@ -187,6 +199,128 @@ a {
     filter: drop-shadow(0 8px 16px rgba(0,0,0,0.45));
 }
 
+/* ========= PAGE CONNEXION ========= */
+.page-connexion,
+.page-inscription {
+    position: relative;
+    min-height: 100vh;
+    background: #0d0c10;
+    overflow: hidden;
+}
+
+.page-connexion::before,
+.page-inscription::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.02) 10%, transparent 10%, transparent 30%, rgba(255,255,255,0.02) 30%, rgba(255,255,255,0.02) 40%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.02) 70%, transparent 70%, transparent 100%);
+    pointer-events: none;
+}
+
+.page-connexion .navbar,
+.page-inscription .navbar {
+    background: transparent;
+    padding: 20px 40px;
+}
+
+.page-connexion .menu,
+.page-inscription .menu {
+    justify-content: flex-end;
+    gap: 0;
+}
+
+.page-connexion .dropdown-btn,
+.page-inscription .dropdown-btn {
+    background: #15151a;
+    border: 1px solid #26262c;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.auth-container {
+    width: min(90%, 520px);
+    margin: 80px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-container h1 {
+    font-size: 52px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.auth-form label {
+    font-size: 16px;
+    color: #dcdce0;
+}
+
+.auth-form input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #3a3a40;
+    padding: 10px 4px;
+    color: #f4f4f6;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.auth-form input:focus {
+    border-bottom-color: #ffffff;
+}
+
+.btn-auth {
+    align-self: flex-start;
+    background: #f5f5f7;
+    color: #0d0c10;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-auth:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.32);
+}
+
+.btn-auth:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.page-connexion footer,
+.page-inscription footer {
+    background: transparent;
+    padding: 20px 30px 24px 30px;
+}
+
+.page-connexion .footer-right,
+.page-inscription .footer-right {
+    display: none;
+}
+
+.page-connexion .socials img,
+.page-inscription .socials img {
+    width: 32px;
+}
+
 .teams-table tbody tr td:last-child {
     border: none !important;
     padding: 10px 0 0 0 !important;
@@ -252,6 +386,7 @@ footer {
 
 .footer-right {
     flex: 0 0 auto;
+    padding-right: 60px;
 }
 
 .socials {
@@ -335,6 +470,11 @@ a {
     padding: 10px;
 }
 
+.background {
+    position: relative;
+    min-height: 300px;
+}
+
 .background img {
     width: 100%;
     height: auto;
@@ -396,10 +536,25 @@ h1 {
 }
 
 .return {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
     display: inline-block;
-    margin-top: 10px;
-    font-size: 16px;
-    text-decoration: underline;
+    font-size: 15px;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.return:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 footer {
