@@ -1,0 +1,168 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #0b0b0e;
+    color: white;
+    font-family: "Poppins", sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #0c0c10;
+}
+
+.logo img {
+    height: 100px;
+    margin-right: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.menu a {
+    margin: 0 15px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #111;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 20px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.hero img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.btn-info {
+    position: absolute;
+    bottom: 50px;
+    right: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px 25px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+
+.teams {
+    padding: 40px;
+}
+
+.teams h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.teams-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.teams-table thead {
+    display: none;
+}
+
+.teams-table tbody {
+    display: contents;
+}
+
+.teams-table tbody tr {
+    background: #15151a;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.teams-table tbody tr:hover {
+    background: #1a1a20;
+}
+
+.team-logo {
+    border: none 
+    padding: 0 
+}
+
+.team-logo img {
+    height: 120px;
+    width: auto;
+    object-fit: contain;
+}
+
+.teams-table tbody tr td:last-child {
+    border: none !important;
+    padding: 0 !important;
+    font-weight: 500;
+}
+
+
+footer {
+    margin-top: 50px;
+    padding: 30px;
+    text-align: center;
+    background: #0c0c10;
+}
+
+.socials img {
+    width: 35px;
+    margin: 0 5px;
+}
+
+.contact {
+    display: block;
+    margin-top: 10px;
+    color: #ccccff;
+}
