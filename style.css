@@ -1,4 +1,4 @@
-
+/* ====== Mise en page et typographie de base ====== */
 body {
     margin: 0;
     padding: 0;
@@ -8,11 +8,13 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+/* ====== Apparence par défaut des liens ====== */
 a {
     color: white;
     text-decoration: none;
 }
 
+/* ====== Barre de navigation principale ====== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -24,23 +26,27 @@ a {
     z-index: 10;
 }
 
+/* Dimensions du logo F1 et effet survol héroïque */
 .logo img {
     height: 150px;
     margin-right: 10px;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+/* Garde le lien du logo ajusté à l'image */
 .logo a {
     display: inline-block;
     line-height: 0;
 }
 
+/* Zoom subtil au survol du logo pour suggérer l'interaction */
 .logo img:hover {
     transform: scale(1.05);
     opacity: 0.85;
     cursor: pointer;
 }
 
+/* Conteneur pour le texte à côté du logo */
 .logo {
     display: flex;
     align-items: center;
@@ -48,6 +54,7 @@ a {
     font-weight: bold;
 }
 
+/* Boutons de navigation dans le menu */
 .menu a {
     margin: 0 15px;
     padding: 10px 15px;
@@ -56,20 +63,24 @@ a {
     transition: background 0.2s;
 }
 
+/* Survol légèrement plus lumineux pour montrer le focus */
 .menu a:hover {
     background: #252529;
 }
 
+/* Conteneur qui aligne les liens de navigation */
 .menu {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
+/* Conteneur du menu déroulant des équipes */
 .dropdown {
     position: relative;
 }
 
+/* Bouton qui ouvre la liste déroulante */
 .dropdown-btn {
     background: #1a1a1f;
     border: none;
@@ -81,10 +92,12 @@ a {
     transition: background 0.2s;
 }
 
+/* Retour visuel lors du survol du déclencheur */
 .dropdown-btn:hover {
     background: #252529;
 }
 
+/* Liste des équipes cachée qui apparaît au survol */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -94,20 +107,24 @@ a {
     min-width: 150px;
 }
 
+/* Chaque lien de la liste occupe toute la largeur cliquable */
 .dropdown-content a {
     display: block;
     padding: 10px 20px;
 }
 
+/* Affiche le menu déroulant quand le parent est survolé */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
+/* Style de l'image héros pleine largeur */
 .hero img {
     width: 100%;
     border-radius: 10px;
 }
 
+/* Bouton d'appel à l'action sur la bannière */
 .btn-info {
     position: absolute;
     bottom: 50px;
@@ -118,36 +135,43 @@ a {
     border-radius: 10px;
 }
 
+/* Conteneur de la grille des écuries */
 .teams {
     padding: 40px;
 }
 
+/* Titre de section au-dessus de la grille */
 .teams h2 {
     font-size: 26px;
     margin-bottom: 20px;
     text-align: center;
 }
 
+/* Grille responsive en cartes pour les écuries */
 .teams-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
     background: #15151a;
     padding: 30px;
     border-radius: 15px;
+    text-align: center;
 }
 
+/* Cache les en-têtes puisque les cartes contiennent les titres */
 .teams-table thead {
     display: none;
 }
 
+/* La grille place les cartes sur plusieurs colonnes */
 .teams-table tbody {
-    display: contents;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
+/* Style d'une carte d'écurie */
 .teams-table tbody tr {
     background: transparent;
     border-radius: 10px;
@@ -158,17 +182,21 @@ a {
     justify-content: center;
     gap: 10px;
     text-align: center;
+    width: min(320px, 100%);
 }
 
+/* Légère élévation au survol pour donner de la profondeur */
 .teams-table tbody tr:hover {
     background: transparent;
 }
 
+/* Conteneur autour des grands logos verticaux */
 .team-logo {
     border: none;
     padding: 0;
 }
 
+/* Assure un redimensionnement propre des logos */
 .team-logo img {
     width: 280px;
     height: 380px;
@@ -176,24 +204,29 @@ a {
     transition: transform 0.2s ease, filter 0.2s ease;
 }
 
+/* Le logo entier est cliquable */
 .team-logo a {
     display: block;
 }
 
+/* Conserve la couleur pour le lien de la rangée */
 .team-link {
     color: inherit;
 }
 
+/* Ajoute un curseur et des indices de mouvement */
 .teams-table tbody tr {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Anime le décalage de la carte */
 .teams-table tbody tr:hover {
     transform: translateY(-6px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
+/* Effet supplémentaire sur les logos au survol */
 .teams-table tbody tr:hover .team-logo img {
     transform: scale(1.05);
     filter: drop-shadow(0 8px 16px rgba(0,0,0,0.45));
@@ -202,6 +235,7 @@ a {
 /* ========= PAGE CONNEXION ========= */
 .page-connexion,
 .page-inscription {
+    /* Structure partagée des pages d'authentification */
     position: relative;
     min-height: 100vh;
     background: #0d0c10;
@@ -210,6 +244,7 @@ a {
 
 .page-connexion::before,
 .page-inscription::before {
+    /* Superposition de bandes animées pour la profondeur */
     content: "";
     position: fixed;
     inset: 0;
@@ -219,18 +254,21 @@ a {
 
 .page-connexion .navbar,
 .page-inscription .navbar {
+    /* Navigation transparente pour les écrans d'authentification */
     background: transparent;
     padding: 20px 40px;
 }
 
 .page-connexion .menu,
 .page-inscription .menu {
+    /* Aligne les liens d'authentification à droite */
     justify-content: flex-end;
     gap: 0;
 }
 
 .page-connexion .dropdown-btn,
 .page-inscription .dropdown-btn {
+    /* Bordure discrète pour encadrer le menu déroulant */
     background: #15151a;
     border: 1px solid #26262c;
     padding: 12px 18px;
@@ -240,6 +278,7 @@ a {
 }
 
 .auth-container {
+    /* Centre la pile de formulaires */
     width: min(90%, 520px);
     margin: 80px auto 0 auto;
     display: flex;
@@ -250,6 +289,7 @@ a {
 }
 
 .auth-container h1 {
+    /* Gros titre principal des formulaires */
     font-size: 52px;
     letter-spacing: 1px;
     font-weight: 700;
@@ -257,17 +297,20 @@ a {
 }
 
 .auth-form {
+    /* Espacement vertical des champs */
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
 .auth-form label {
+    /* Libellés discrets au style souligné */
     font-size: 16px;
     color: #dcdce0;
 }
 
 .auth-form input {
+    /* Champs façon verre avec soulignement */
     background: transparent;
     border: none;
     border-bottom: 1px solid #3a3a40;
@@ -279,10 +322,12 @@ a {
 }
 
 .auth-form input:focus {
+    /* Souligne le champ en édition */
     border-bottom-color: #ffffff;
 }
 
 .btn-auth {
+    /* Bouton principal en pilule */
     align-self: flex-start;
     background: #f5f5f7;
     color: #0d0c10;
@@ -296,39 +341,46 @@ a {
 }
 
 .btn-auth:hover {
+    /* Mouvement flottant au survol */
     transform: translateY(-1px);
     box-shadow: 0 10px 22px rgba(0,0,0,0.32);
 }
 
 .btn-auth:active {
+    /* Réinitialise le survol lors du clic */
     transform: translateY(0);
     box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
 .page-connexion footer,
 .page-inscription footer {
+    /* Pied-de-page aligné et transparent sur ces écrans */
     background: transparent;
     padding: 20px 30px 24px 30px;
 }
 
 .page-connexion .footer-right,
 .page-inscription .footer-right {
+    /* Masque le bouton de contact sur ces pages */
     display: none;
 }
 
 .page-connexion .socials img,
 .page-inscription .socials img {
+    /* Icônes sociales réduites dans ce pied-de-page */
     width: 32px;
 }
 
+/* Style typographique pour les noms sous les logos */
 .teams-table tbody tr td:last-child {
-    border: none !important;
-    padding: 10px 0 0 0 !important;
+    border: none;
+    padding: 10px 0 0 0;
     font-weight: 600;
     font-size: 20px;
     color: white;
 }
 
+/* Couleurs d'accent propres à chaque écurie */
 .teams-table tbody tr:nth-child(1) td:last-child {
     color: #1B7D6C;
 }
@@ -353,7 +405,7 @@ a {
     color: white;
 }
 
-
+/* ====== Pied-de-page global fixé en bas ====== */
 footer {
     padding: 30px;
     background: #0c0c10;
@@ -370,35 +422,42 @@ footer {
     text-align: center;
 }
 
+/* Bloc social aligné à gauche */
 .footer-left {
     flex: 0 0 auto;
 }
 
+/* Colonne centrale pour le texte légal */
 .footer-center {
     flex: 1;
     text-align: center;
 }
 
+/* Espacement resserré des paragraphes du footer */
 .footer-center p {
     margin: 5px 0;
     font-size: 14px;
 }
 
+/* Zone du bouton Contactez-nous */
 .footer-right {
     flex: 0 0 auto;
     margin-right: 40px;
 }
 
+/* Liste horizontale des icônes sociales */
 .socials {
     display: flex;
     gap: 10px;
 }
 
+/* Uniformise la taille des icônes */
 .socials img {
     width: 35px;
     margin: 0;
 }
 
+/* Lien de contact présenté comme un bouton */
 .contact {
     display: inline-block;
     margin-top: 10px;
@@ -408,9 +467,13 @@ footer {
     color: #ccccff;
 }
 
+/* Indice de survol sur le bouton de contact */
+/* Survol du bouton de contact sur les pages principales */
 .contact:hover {
     background: #1a1a20;
 }
+
+/* ====== Styles de base des pages d'écurie ====== */
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -418,11 +481,13 @@ body {
     background: #0b0d0c;
 }
 
+/* Garde les liens en blanc sur ces pages */
 a {
     text-decoration: none;
     color: white;
 }
 
+/* Variante de la barre de navigation sur les pages info */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -433,6 +498,7 @@ a {
     z-index: 10;
 }
 
+/* Aligne le bloc logo près des liens */
 .logo {
     display: flex;
     align-items: center;
@@ -440,10 +506,12 @@ a {
     font-weight: bold;
 }
 
+/* Comportement du menu déroulant identique à l'accueil */
 .dropdown {
     position: relative;
 }
 
+/* Déclencheur texte du menu déroulant */
 .dropdown-btn {
     background: none;
     border: none;
@@ -452,6 +520,7 @@ a {
     font-size: 15px;
 }
 
+/* Liste déroulante masquée */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -461,20 +530,24 @@ a {
     min-width: 150px;
 }
 
+/* Affiche la liste au survol */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
+/* Liens déroulants pleine largeur */
 .dropdown-content a {
     display: block;
     padding: 10px;
 }
 
+/* Bloc de fond pour la photo et son overlay */
 .background {
     position: relative;
     min-height: 300px;
 }
 
+/* Ajuste la taille et la désaturation de l'arrière-plan */
 .background img {
     width: 100%;
     height: auto;
@@ -486,21 +559,104 @@ a {
     z-index: -1;
 }
 
+/* Conteneur principal du texte d'équipe */
 .content {
     text-align: center;
     padding: 40px 20px;
 }
 
+/* Mise en forme dédiée à la page de contact */
+.contact-section {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    width: min(600px, 100%);
+    margin: 30px auto 0;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.contact-field {
+    margin-bottom: 22px;
+    text-align: left;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #f4f4f6;
+}
+
+.contact-input {
+    width: 100%;
+    border: 1px solid #26262e;
+    border-radius: 14px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.contact-input.is-editing {
+    border-color: #e10600;
+    box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.3);
+}
+
+.contact-password-wrapper {
+    position: relative;
+}
+
+.contact-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #d7d8df;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 4px 6px;
+}
+
+.contact-password-toggle:hover {
+    color: white;
+}
+
+.contact-submit {
+    margin-top: 10px;
+}
+
+.contact-hint {
+    margin-top: 18px;
+    color: #c2c3cf;
+    font-size: 14px;
+}
+
+/* Titre affichant le nom de l'écurie */
 h1 {
     font-size: 42px;
     margin-bottom: 20px;
 }
 
+/* Style de la photo pilote/garage */
 .team-photo img {
     width: 350px;
     border-radius: 20px;
 }
 
+/* Premier bloc de description */
 .description {
     width: 60%;
     margin: 20px auto;
@@ -508,17 +664,20 @@ h1 {
     line-height: 1.6;
 }
 
+/* Présentation de la voiture avec l'étiquette de vitesse */
 .car-photo {
     margin: 40px auto 20px;
     position: relative;
     width: 350px;
 }
 
+/* Image de la voiture avec angles arrondis */
 .car-photo img {
     width: 100%;
     border-radius: 20px;
 }
 
+/* Pastille de vitesse en haut à droite */
 .speed {
     position: absolute;
     top: 10px;
@@ -529,6 +688,7 @@ h1 {
     font-size: 14px;
 }
 
+/* Deuxième bloc descriptif */
 .description2 {
     width: 60%;
     margin: 10px auto 40px;
@@ -536,6 +696,7 @@ h1 {
 }
 
 .return {
+    /* Bouton flottant pour revenir à l'accueil */
     position: absolute;
     bottom: 30px;
     left: 30px;
@@ -552,12 +713,14 @@ h1 {
 }
 
 .return:hover {
+    /* Halo lumineux lors du survol */
     background: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 footer {
+    /* Pied-de-page statique pour les pages info */
     text-align: center;
     padding: 30px;
     margin-top: 40px;
@@ -565,6 +728,7 @@ footer {
 }
 
 .contact {
+    /* Lien de contact affiché en bloc sur ces pages */
     display: block;
     margin-top: 10px;
 }

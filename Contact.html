@@ -4,10 +4,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Contact</title>
+	<!-- Feuille de style partagée par toutes les pages -->
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+	<!-- Navigation reprenant les actions principales et le menu des équipes -->
 	<header class="navbar">
 		<div class="logo">
 			<a href="Acceuil.html"><img src="image/f1logo.png" alt="Logo F1"></a>
@@ -29,11 +31,42 @@
 		</nav>
 	</header>
 
-	<section class="content">
+	<!-- Zone de contenu dédiée aux informations de contact -->
+	<section class="content contact-section">
 		<h1>Contact</h1>
-		<p class="description">Formulaire de contact ici.</p>
+		<p class="description">Remplissez le formulaire ci-dessous et notre équipe vous recontactera rapidement.</p>
+
+		<form class="contact-form" id="contact-form" novalidate>
+			<div class="contact-field">
+				<label for="contact-fullname">Nom complet</label>
+				<input id="contact-fullname" name="fullname" type="text" class="contact-input" data-label="Nom complet" placeholder="Ex : Charles Leclerc">
+			</div>
+
+			<div class="contact-field">
+				<label for="contact-email">Adresse e-mail</label>
+				<input id="contact-email" name="email" type="email" class="contact-input" data-label="Adresse e-mail" placeholder="nom@exemple.com">
+			</div>
+
+			<div class="contact-field">
+				<label for="contact-password">Mot de passe temporaire</label>
+				<div class="contact-password-wrapper">
+					<input id="contact-password" name="password" type="password" class="contact-input" data-label="Mot de passe" data-password="true" placeholder="Choisissez un code sécurisé">
+					<button type="button" class="contact-password-toggle" aria-pressed="false">Afficher</button>
+				</div>
+			</div>
+
+			<div class="contact-field">
+				<label for="contact-message">Message</label>
+				<textarea id="contact-message" name="message" rows="4" class="contact-input" data-label="Message" placeholder="Votre message..."></textarea>
+			</div>
+
+			<button type="submit" class="btn-auth contact-submit">Envoyer</button>
+		</form>
+
+		<p class="contact-hint">Nous répondons sous 24&nbsp;heures ouvrées.</p>
 	</section>
 
+	<!-- Pied-de-page standard avec réseaux sociaux et adresse -->
 	<footer>
 		<div class="footer-left">
 			<div class="socials">
@@ -51,5 +84,6 @@
 		</div>
 	</footer>
 
+	<script src=".js" defer></script>
 </body>
 </html>
