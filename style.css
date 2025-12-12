@@ -326,6 +326,11 @@ a {
     border-bottom-color: #ffffff;
 }
 
+.auth-form input.is-editing {
+    border-bottom-color: #f5427b;
+    box-shadow: 0 6px 18px rgba(245, 66, 123, 0.25);
+}
+
 .btn-auth {
     /* Bouton principal en pilule */
     align-self: flex-start;
@@ -474,71 +479,34 @@ footer {
 }
 
 /* ====== Styles de base des pages d'écurie ====== */
-body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    color: white;
+body.page-equipe {
     background: #0b0d0c;
 }
 
-/* Garde les liens en blanc sur ces pages */
-a {
-    text-decoration: none;
-    color: white;
-}
-
-/* Variante de la barre de navigation sur les pages info */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #0c0c10;
-    padding: 15px 40px;
-    position: relative;
-    z-index: 10;
-}
-
-/* Aligne le bloc logo près des liens */
-.logo {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* Comportement du menu déroulant identique à l'accueil */
-.dropdown {
-    position: relative;
-}
-
-/* Déclencheur texte du menu déroulant */
-.dropdown-btn {
+.page-equipe .dropdown-btn {
     background: none;
     border: none;
     color: white;
     cursor: pointer;
     font-size: 15px;
+    padding: 0;
 }
 
-/* Liste déroulante masquée */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background: #111;
-    border-radius: 5px;
-    padding: 5px 0;
-    min-width: 150px;
-}
-
-/* Affiche la liste au survol */
-.dropdown:hover .dropdown-content {
+.page-equipe footer {
+    position: static;
     display: block;
+    text-align: center;
+    margin-top: 40px;
+    background: #0c0c10;
 }
 
-/* Liens déroulants pleine largeur */
-.dropdown-content a {
-    display: block;
-    padding: 10px;
+.page-equipe .footer-right {
+    margin-right: 0;
+}
+
+.page-equipe .contact {
+    display: inline-block;
+    margin-top: 10px;
 }
 
 /* Bloc de fond pour la photo et son overlay */
@@ -609,8 +577,8 @@ a {
 }
 
 .contact-input.is-editing {
-    border-color: #e10600;
-    box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.3);
+    border-color: #f5427b;
+    box-shadow: 0 0 0 2px rgba(245, 66, 123, 0.3);
 }
 
 .contact-password-wrapper {
