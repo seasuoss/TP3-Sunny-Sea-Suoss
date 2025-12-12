@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     padding-bottom: 180px;
-    background: #0b0d0c;
+    background: #0b0b0e;
     color: white;
     font-family: "Poppins", sans-serif;
 }
@@ -44,7 +44,7 @@ a {
 .logo {
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -53,7 +53,7 @@ a {
     padding: 10px 15px;
     background: #1a1a1f;
     border-radius: 5px;
-    transition: 0.2s;
+    transition: background 0.2s;
 }
 
 .menu a:hover {
@@ -71,14 +71,14 @@ a {
 }
 
 .dropdown-btn {
-    background: none;
+    background: #1a1a1f;
     border: none;
     color: white;
     cursor: pointer;
     font-size: 15px;
     padding: 10px 15px;
     border-radius: 5px;
-    transition: 0.2s;
+    transition: background 0.2s;
 }
 
 .dropdown-btn:hover {
@@ -199,6 +199,127 @@ a {
     filter: drop-shadow(0 8px 16px rgba(0,0,0,0.45));
 }
 
+/* ========= PAGE CONNEXION ========= */
+.page-connexion,
+.page-inscription {
+    position: relative;
+    min-height: 100vh;
+    background: #0d0c10;
+    overflow: hidden;
+}
+
+.page-connexion::before,
+.page-inscription::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.02) 10%, transparent 10%, transparent 30%, rgba(255,255,255,0.02) 30%, rgba(255,255,255,0.02) 40%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.02) 70%, transparent 70%, transparent 100%);
+    pointer-events: none;
+}
+
+.page-connexion .navbar,
+.page-inscription .navbar {
+    background: transparent;
+    padding: 20px 40px;
+}
+
+.page-connexion .menu,
+.page-inscription .menu {
+    justify-content: flex-end;
+    gap: 0;
+}
+
+.page-connexion .dropdown-btn,
+.page-inscription .dropdown-btn {
+    background: #15151a;
+    border: 1px solid #26262c;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.auth-container {
+    width: min(90%, 520px);
+    margin: 80px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-container h1 {
+    font-size: 52px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.auth-form label {
+    font-size: 16px;
+    color: #dcdce0;
+}
+
+.auth-form input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #3a3a40;
+    padding: 10px 4px;
+    color: #f4f4f6;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.auth-form input:focus {
+    border-bottom-color: #ffffff;
+}
+
+.btn-auth {
+    align-self: flex-start;
+    background: #f5f5f7;
+    color: #0d0c10;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-auth:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.32);
+}
+
+.btn-auth:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.page-connexion footer,
+.page-inscription footer {
+    background: transparent;
+    padding: 20px 30px 24px 30px;
+}
+
+.page-connexion .footer-right,
+.page-inscription .footer-right {
+    display: none;
+}
+
+.page-connexion .socials img,
+.page-inscription .socials img {
+    width: 32px;
+}
 
 .teams-table tbody tr td:last-child {
     border: none !important;
@@ -240,6 +361,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -264,7 +386,7 @@ footer {
 
 .footer-right {
     flex: 0 0 auto;
-    padding-right: 60px;
+    margin-right: 40px;
 }
 
 .socials {
@@ -289,6 +411,65 @@ footer {
 .contact:hover {
     background: #1a1a20;
 }
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    background: #0b0d0c;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0c0c10;
+    padding: 15px 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #111;
+    border-radius: 5px;
+    padding: 5px 0;
+    min-width: 150px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+}
+
 .background {
     position: relative;
     min-height: 300px;
@@ -354,3 +535,36 @@ h1 {
     font-size: 18px;
 }
 
+.return {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    display: inline-block;
+    font-size: 15px;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.return:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+    background: #0c0c10;
+}
+
+.contact {
+    display: block;
+    margin-top: 10px;
+}
