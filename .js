@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			form: contactForm,
 			emptyMessage: "Merci de compléter tous les champs requis avant d'envoyer votre message.",
 			autoTogglePassword: false,
-			toggleSelector: '.contact-password-toggle',
 		});
 	}
 });

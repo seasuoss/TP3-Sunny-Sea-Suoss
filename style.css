@@ -92,11 +92,6 @@ a {
     transition: background 0.2s;
 }
 
-/* Retour visuel lors du survol du déclencheur */
-.dropdown-btn:hover {
-    background: #252529;
-}
-
 /* Liste des équipes cachée qui apparaît au survol */
 .dropdown-content {
     display: none;
@@ -113,15 +108,40 @@ a {
     padding: 10px 20px;
 }
 
-/* Affiche le menu déroulant quand le parent est survolé */
-.dropdown:hover .dropdown-content {
+.dropdown:focus-within .dropdown-content {
     display: block;
 }
 
-/* Style de l'image héros pleine largeur */
+/* Section héros avec vidéo superposée */
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 40px;
+}
+
 .hero img {
     width: 100%;
     border-radius: 10px;
+    display: block;
+}
+
+.hero-video {
+    position: absolute;
+    width: min(65%, 760px);
+    aspect-ratio: 16 / 9;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+    border: 3px solid rgba(255, 255, 255, 0.35);
+}
+
+.hero-video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
 }
 
 /* Bouton d'appel à l'action sur la bannière */
@@ -183,11 +203,8 @@ a {
     gap: 10px;
     text-align: center;
     width: min(320px, 100%);
-}
-
-/* Légère élévation au survol pour donner de la profondeur */
-.teams-table tbody tr:hover {
-    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Conteneur autour des grands logos verticaux */
@@ -214,14 +231,9 @@ a {
     color: inherit;
 }
 
-/* Ajoute un curseur et des indices de mouvement */
-.teams-table tbody tr {
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
 /* Anime le décalage de la carte */
 .teams-table tbody tr:hover {
+    background: transparent;
     transform: translateY(-6px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
@@ -357,25 +369,6 @@ a {
     box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-.page-connexion footer,
-.page-inscription footer {
-    /* Pied-de-page aligné et transparent sur ces écrans */
-    background: transparent;
-    padding: 20px 30px 24px 30px;
-}
-
-.page-connexion .footer-right,
-.page-inscription .footer-right {
-    /* Masque le bouton de contact sur ces pages */
-    display: none;
-}
-
-.page-connexion .socials img,
-.page-inscription .socials img {
-    /* Icônes sociales réduites dans ce pied-de-page */
-    width: 32px;
-}
-
 /* Style typographique pour les noms sous les logos */
 .teams-table tbody tr td:last-child {
     border: none;
@@ -492,31 +485,173 @@ body.page-equipe {
     padding: 0;
 }
 
-.page-equipe footer {
-    position: static;
-    display: block;
-    text-align: center;
-    margin-top: 40px;
-    background: #0c0c10;
+/* ====== Page Contact (maquette officielle) ====== */
+body.page-contact {
+    font-family: "Space Grotesk", "Poppins", sans-serif;
+    background: #050505;
+    color: #f7f7fc;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 260px;
 }
 
-.page-equipe .footer-right {
-    margin-right: 0;
+body.page-contact::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.04), transparent 45%),
+        radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.04), transparent 55%),
+        linear-gradient(130deg, rgba(255, 255, 255, 0.04) 10%, transparent 10%),
+        linear-gradient(310deg, rgba(255, 255, 255, 0.03) 8%, transparent 8%);
+    z-index: -1;
 }
 
-.page-equipe .contact {
-    display: inline-block;
-    margin-top: 10px;
+.page-contact .navbar {
+    background: transparent;
+    padding: 30px 6vw 10px;
 }
 
-/* Bloc de fond pour la photo et son overlay */
-.background {
+.page-contact .menu a {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+
+
+.contact-hero {
+    width: min(1200px, 92%);
+    margin: 0 auto 40px;
+    padding-top: 30px;
+}
+
+.contact-hero-inner {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 30px;
+}
+
+.contact-title {
+    font-family: "Orbitron", "Space Grotesk", sans-serif;
+    font-size: clamp(52px, 12vw, 120px);
+    letter-spacing: 0.08em;
+    margin: 0 0 10px;
+}
+
+.contact-hero-body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-general h2,
+.contact-service p {
+    font-size: clamp(28px, 4vw, 50px);
+    margin: 0;
+    font-family: "Orbitron", "Space Grotesk", sans-serif;
+}
+
+.contact-general p {
+    margin: 12px 0 0;
+    max-width: 620px;
+    color: rgba(247, 247, 252, 0.72);
+    line-height: 1.6;
+}
+
+.contact-section {
+    width: min(1200px, 92%);
+    margin: 0 auto 120px;
+}
+
+.contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 48px 0;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-field--wide {
+    grid-column: 1 / -1;
+}
+
+.contact-form label {
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(247, 247, 252, 0.75);
+}
+
+.contact-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(247, 247, 252, 0.3);
+    border-radius: 0;
+    padding: 12px 0 6px;
+    background: transparent;
+    color: #f7f7fc;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    transition: border-bottom-color 0.2s ease;
+}
+
+.contact-input::placeholder {
+    color: rgba(247, 247, 252, 0.4);
+}
+
+.contact-input.is-editing {
+    border-bottom-color: #e10600;
+    box-shadow: none;
+}
+
+textarea.contact-input {
+    resize: none;
+    min-height: 150px;
+}
+
+.page-contact .btn-auth.contact-submit {
+    grid-column: 1 / -1;
+    justify-self: flex-start;
+    background: transparent;
+    color: #f7f7fc;
+    border: 1px solid rgba(247, 247, 252, 0.4);
+    border-radius: 999px;
+    padding: 12px 34px;
+}
+
+.page-contact .btn-auth.contact-submit:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-hint {
+    margin-top: 20px;
+    color: rgba(247, 247, 252, 0.7);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+    .contact-form {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    body.page-contact {
+        padding-bottom: 200px;
+    }
+}
+
+/* ====== Pages infos écuries (mise en commun) ====== */
+.page-equipe .team-background {
     position: relative;
     min-height: 300px;
 }
 
-/* Ajuste la taille et la désaturation de l'arrière-plan */
-.background img {
+.page-equipe .team-background img {
     width: 100%;
     height: auto;
     max-height: calc(100vh - 80px);
@@ -527,126 +662,44 @@ body.page-equipe {
     z-index: -1;
 }
 
-/* Conteneur principal du texte d'équipe */
-.content {
+.page-equipe .team-content {
     text-align: center;
     padding: 40px 20px;
 }
 
-/* Mise en forme dédiée à la page de contact */
-.contact-section {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.contact-form {
-    width: min(600px, 100%);
-    margin: 30px auto 0;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-}
-
-.contact-field {
-    margin-bottom: 22px;
-    text-align: left;
-}
-
-.contact-form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #f4f4f6;
-}
-
-.contact-input {
-    width: 100%;
-    border: 1px solid #26262e;
-    border-radius: 14px;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.04);
-    color: white;
-    font-size: 15px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact-input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.contact-input.is-editing {
-    border-color: #f5427b;
-    box-shadow: 0 0 0 2px rgba(245, 66, 123, 0.3);
-}
-
-.contact-password-wrapper {
-    position: relative;
-}
-
-.contact-password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 14px;
-    transform: translateY(-50%);
-    border: none;
-    background: transparent;
-    color: #d7d8df;
-    font-size: 13px;
-    cursor: pointer;
-    padding: 4px 6px;
-}
-
-.contact-password-toggle:hover {
-    color: white;
-}
-
-.contact-submit {
-    margin-top: 10px;
-}
-
-.contact-hint {
-    margin-top: 18px;
-    color: #c2c3cf;
-    font-size: 14px;
-}
-
-/* Titre affichant le nom de l'écurie */
-h1 {
+.page-equipe .team-title {
     font-size: 42px;
     margin-bottom: 20px;
 }
 
-/* Style de la photo pilote/garage */
-.team-photo img {
+.page-equipe .team-photo img {
     width: 350px;
     border-radius: 20px;
 }
 
-/* Premier bloc de description */
-.description {
-    width: 60%;
+.page-equipe .team-description {
+    width: min(680px, 90%);
     margin: 20px auto;
     font-size: 18px;
     line-height: 1.6;
 }
 
-/* Présentation de la voiture avec l'étiquette de vitesse */
-.car-photo {
+.page-equipe .team-description--secondary {
+    margin-bottom: 40px;
+}
+
+.page-equipe .team-car {
     margin: 40px auto 20px;
     position: relative;
     width: 350px;
 }
 
-/* Image de la voiture avec angles arrondis */
-.car-photo img {
+.page-equipe .team-car img {
     width: 100%;
     border-radius: 20px;
 }
 
-/* Pastille de vitesse en haut à droite */
-.speed {
+.page-equipe .team-speed {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -656,15 +709,7 @@ h1 {
     font-size: 14px;
 }
 
-/* Deuxième bloc descriptif */
-.description2 {
-    width: 60%;
-    margin: 10px auto 40px;
-    font-size: 18px;
-}
-
-.return {
-    /* Bouton flottant pour revenir à l'accueil */
+.page-equipe .team-return {
     position: absolute;
     bottom: 30px;
     left: 30px;
@@ -680,23 +725,10 @@ h1 {
     z-index: 5;
 }
 
-.return:hover {
-    /* Halo lumineux lors du survol */
+.page-equipe .team-return:hover {
     background: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-footer {
-    /* Pied-de-page statique pour les pages info */
-    text-align: center;
-    padding: 30px;
-    margin-top: 40px;
-    background: #0c0c10;
-}
 
-.contact {
-    /* Lien de contact affiché en bloc sur ces pages */
-    display: block;
-    margin-top: 10px;
-}
