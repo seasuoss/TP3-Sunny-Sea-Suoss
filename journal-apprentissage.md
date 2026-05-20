@@ -1,8 +1,8 @@
 # Journal d’apprentissage individuel — TP3
 
 **Cours :** 420-2CW-BB — Hiver 2026  
-**Étudiant :** Marco Polo  
-**Équipe :** Sunny Sea Suoss  
+**Étudiant :**Sunny Sea Suos
+**Équipe :** Sunny Sea Suos 
 **Date de remise :** 20 mai 2026  
 
 ---
