@@ -1,0 +1,278 @@
+/* css/style.css — Styles admin TP3 — thème F1 */
+
+/* ── Variables ── */
+:root {
+  --rouge:   #e10600;
+  --noir:    #0f0f0f;
+  --gris-fonce: #1a1a1a;
+  --gris:    #2a2a2a;
+  --gris-clair: #3a3a3a;
+  --texte:   #f0f0f0;
+  --texte-muted: #aaa;
+  --border:  #333;
+  --success: #27ae60;
+  --radius:  6px;
+  --shadow:  0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* ── Reset de base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--noir);
+  color: var(--texte);
+  min-height: 100vh;
+}
+
+/* ── Liens navigation admin ── */
+.admin-link {
+  background: var(--rouge) !important;
+  color: #fff !important;
+  padding: 6px 14px !important;
+  border-radius: var(--radius) !important;
+  font-weight: 600;
+}
+.admin-link:hover { background: #c00 !important; }
+
+/* ── Main admin ── */
+.admin-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ── Hero portail ── */
+.admin-hero {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+.admin-hero h1 {
+  font-size: 2rem;
+  color: var(--rouge);
+  margin-bottom: 0.5rem;
+}
+.admin-hero p { color: var(--texte-muted); max-width: 600px; margin: 0 auto; }
+
+/* ── Cards portail ── */
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+.admin-card {
+  background: var(--gris-fonce);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.25rem;
+  text-decoration: none;
+  color: var(--texte);
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.admin-card:hover {
+  border-color: var(--rouge);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(225,6,0,0.2);
+}
+.card-icon { font-size: 2rem; display: block; margin-bottom: .75rem; }
+.admin-card h2 { font-size: 1.2rem; margin-bottom: .4rem; color: #fff; }
+.admin-card p  { font-size: .85rem; color: var(--texte-muted); }
+
+/* ── Titre de page ── */
+.page-title {
+  font-size: 1.6rem;
+  color: var(--rouge);
+  margin-bottom: 1.75rem;
+  border-bottom: 2px solid var(--rouge);
+  padding-bottom: .5rem;
+}
+
+/* ── Section ── */
+.admin-section {
+  background: var(--gris-fonce);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  box-shadow: var(--shadow);
+}
+.admin-section h2 {
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* ── Section header avec actions ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+.section-header h2 { margin-bottom: 0; }
+.section-header-actions {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+}
+
+/* ── Tableau ── */
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+thead tr { background: var(--gris); }
+th {
+  padding: .7rem 1rem;
+  text-align: left;
+  color: var(--rouge);
+  font-weight: 600;
+  border-bottom: 2px solid var(--rouge);
+  white-space: nowrap;
+}
+td {
+  padding: .65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--texte);
+}
+tbody tr:hover { background: var(--gris-clair); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* ── Actions boutons dans tableau ── */
+.actions { display: flex; gap: .5rem; }
+.btn-edit, .btn-delete, .btn-items {
+  border: none;
+  border-radius: var(--radius);
+  padding: .3rem .65rem;
+  cursor: pointer;
+  font-size: .85rem;
+  transition: opacity .15s;
+}
+.btn-edit   { background: #2980b9; color: #fff; }
+.btn-delete { background: var(--rouge); color: #fff; }
+.btn-items  { background: #8e44ad; color: #fff; }
+.btn-edit:hover, .btn-delete:hover, .btn-items:hover { opacity: .8; }
+.btn-reload {
+  background: var(--gris-clair);
+  color: var(--texte);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .4rem .9rem;
+  cursor: pointer;
+  font-size: .85rem;
+}
+.btn-reload:hover { border-color: var(--rouge); }
+
+/* ── Formulaire admin ── */
+.admin-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .9rem;
+  align-items: end;
+}
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  font-size: .85rem;
+  color: var(--texte-muted);
+}
+.admin-form input, .admin-form select {
+  background: var(--gris);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .5rem .75rem;
+  color: var(--texte);
+  font-size: .9rem;
+  transition: border-color .2s;
+}
+.admin-form input:focus, .admin-form select:focus {
+  outline: none;
+  border-color: var(--rouge);
+}
+.btn-submit {
+  background: var(--rouge);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: .55rem 1.25rem;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: end;
+  transition: background .2s;
+  height: fit-content;
+}
+.btn-submit:hover { background: #c00; }
+
+/* ── Message feedback ── */
+.message {
+  display: none;
+  padding: .6rem 1rem;
+  border-radius: var(--radius);
+  background: var(--gris);
+  font-size: .9rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid var(--success);
+}
+
+/* ── Recherche ── */
+.search-input {
+  background: var(--gris);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .45rem .85rem;
+  color: var(--texte);
+  font-size: .9rem;
+  min-width: 200px;
+}
+.search-input:focus { outline: none; border-color: var(--rouge); }
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.75);
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.modal-box {
+  background: var(--gris-fonce);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: min(90vw, 520px);
+  box-shadow: var(--shadow);
+}
+.modal-box h3 {
+  font-size: 1.1rem;
+  color: var(--rouge);
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: .5rem;
+}
+.form-actions {
+  display: flex;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.btn-save   { background: var(--success); color: #fff; border: none; border-radius: var(--radius); padding: .5rem 1.1rem; cursor: pointer; font-weight: 600; }
+.btn-cancel { background: var(--gris-clair); color: var(--texte); border: 1px solid var(--border); border-radius: var(--radius); padding: .5rem 1.1rem; cursor: pointer; }
+.btn-save:hover   { opacity: .85; }
+.btn-cancel:hover { border-color: var(--rouge); }
+
+/* ── MDP masqué ── */
+.mdp-mask { cursor: pointer; font-family: monospace; color: var(--texte-muted); user-select: none; }
+.mdp-mask:hover { color: var(--texte); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .admin-form { grid-template-columns: 1fr; }
+  .section-header { flex-direction: column; align-items: flex-start; }
+}
