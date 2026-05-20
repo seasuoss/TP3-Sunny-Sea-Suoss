@@ -1,5 +1,3 @@
-// paniers.js — Gestion de la page panier.html
-
 async function chargerPaniers(filtre = '') {
   const tbody = document.getElementById('paniers-body');
   tbody.innerHTML = '<tr><td colspan="6">Chargement…</td></tr>';

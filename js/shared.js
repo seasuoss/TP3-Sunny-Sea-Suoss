@@ -1,5 +1,3 @@
-// shared.js — Utilitaires partagés entre toutes les pages
-
 function setMessage(elementId, msg, isError = false) {
   const el = document.getElementById(elementId);
   if (!el) return;

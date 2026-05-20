@@ -1,5 +1,3 @@
-// produits.js — Gestion de la page produit.html
-
 async function chargerProduits(filtre = '') {
   const tbody = document.getElementById('produits-body');
   tbody.innerHTML = '<tr><td colspan="7">Chargement…</td></tr>';

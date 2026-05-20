@@ -1,5 +1,3 @@
-// utilisateurs.js — Gestion de la page utilisateur.html
-
 async function chargerUtilisateurs() {
   const tbody = document.getElementById('utilisateurs-body');
   tbody.innerHTML = '<tr><td colspan="7">Chargement…</td></tr>';

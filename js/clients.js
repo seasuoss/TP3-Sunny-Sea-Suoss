@@ -1,5 +1,3 @@
-// clients.js — Gestion de la page client.html
-
 async function chargerClients() {
   const tbody = document.getElementById('clients-body');
   tbody.innerHTML = '<tr><td colspan="7">Chargement…</td></tr>';

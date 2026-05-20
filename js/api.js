@@ -1,6 +1,3 @@
-// api.js — Toute communication avec l'API ORDS est centralisée ici.
-// Aucun fetch() ne doit apparaître en dehors de ce fichier.
-
 const BASE_URL = 'http://localhost:8080/ords/commande/';
 
 async function getAll(entity) {
