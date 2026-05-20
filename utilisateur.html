@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilisateurs — Admin TP3</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav style="background:#1a1a1a;padding:1rem 2rem;border-bottom:2px solid #e10600;display:flex;align-items:center;gap:2rem;">
+    <a href="admin.html" style="color:#e10600;font-weight:700;text-decoration:none;">← Admin</a>
+    <span style="color:#aaa;">Gestion des utilisateurs</span>
+  </nav>
+
+  <main class="admin-main">
+    <h1 class="page-title">👤 Utilisateurs</h1>
+
+    <!-- Formulaire ajout -->
+    <div class="admin-section">
+      <h2>Ajouter un utilisateur</h2>
+      <form id="utilisateur-form" class="admin-form">
+        <label>Nom<input id="nom" type="text" required placeholder="Dupont"></label>
+        <label>Prénom<input id="prenom" type="text" required placeholder="Alain"></label>
+        <label>Adresse<input id="adresse" type="text" placeholder="1234 Rue des Ormes"></label>
+        <label>Ville<input id="ville" type="text" placeholder="Montréal"></label>
+        <label>Courriel<input id="courriel" type="email" required placeholder="utilisateur@exemple.com"></label>
+        <label>Mot de passe<input id="mdp" type="password" required placeholder="Mot de passe"></label>
+        <button type="submit" class="btn-submit">Ajouter</button>
+      </form>
+      <p id="utilisateur-message" class="message"></p>
+    </div>
+
+    <!-- Tableau liste -->
+    <div class="admin-section">
+      <div class="section-header">
+        <h2>Liste des utilisateurs</h2>
+        <button id="reload-utilisateurs" class="btn-reload">🔄 Actualiser</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Nom</th><th>Prénom</th><th>Ville</th><th>Courriel</th><th>MDP</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="utilisateurs-body">
+            <tr><td colspan="7">Chargement&hellip;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal modification -->
+  <div id="edit-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+      <h3>✏️ Modifier l&rsquo;utilisateur</h3>
+      <form id="edit-form" class="admin-form" style="grid-template-columns:1fr 1fr;">
+        <input type="hidden" id="edit-id">
+        <label>Nom<input id="edit-nom" type="text" required></label>
+        <label>Prénom<input id="edit-prenom" type="text" required></label>
+        <label>Adresse<input id="edit-adresse" type="text"></label>
+        <label>Ville<input id="edit-ville" type="text"></label>
+        <label style="grid-column:1/-1;">Courriel<input id="edit-courriel" type="email" required></label>
+        <div class="form-actions" style="grid-column:1/-1;">
+          <button type="submit" class="btn-save">Enregistrer</button>
+          <button type="button" id="close-modal" class="btn-cancel">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/utilisateurs.js"></script>
+</body>
+</html>
