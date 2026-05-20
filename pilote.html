@@ -3,81 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1 — Pilotes</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <title>Pilotes — Admin F1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<header class="navbar">
-  <div class="logo"><a href="Acceuil.html"><img src="image/f1logo.png" alt="Logo F1"></a></div>
-  <nav class="menu">
-    <a href="Connexion.html">Connexion</a>
-    <a href="Inscription.html">S&apos;inscrire</a>
-    <div class="dropdown">
-      <button class="dropdown-btn">Équipes F1</button>
-      <div class="dropdown-content">
-        <a href="Info of mercedes.html">Mercedes</a>
-        <a href="Info of ferrari.html">Ferrari</a>
-        <a href="Info of aston martin.html">Aston Martin</a>
-        <a href="Info of redbull.html">RedBull</a>
-        <a href="Info of mclaren.html">McLaren</a>
-        <a href="Info of alpine.html">Alpine</a>
-      </div>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/200px-F1.svg.png" alt="F1">
+      <span>Admin F1</span>
     </div>
-    <a href="index.html" class="btn-admin">⚙️ Admin</a>
+    <div class="nav-links">
+      <a href="ecurie.html">Écuries</a>
+      <a href="pilote.html" class="active">Pilotes</a>
+      <a href="course.html">Courses</a>
+      <a href="resultat.html">Résultats</a>
+      <a href="utilisateur.html">Utilisateurs</a>
+    </div>
   </nav>
-</header>
-<main class="admin-main">
-  <h1>Pilotes F1</h1>
-  <p id="pilote-message" class="msg"></p>
-  <div class="table-toolbar">
-    <input id="search-pilote" placeholder="🔍 Rechercher un pilote…" class="search-input">
-    <button id="reload-pilotes" class="btn-reload">🔄 Actualiser</button>
-  </div>
-  <table class="data-table">
-    <thead><tr><th>ID</th><th>Nom</th><th>Nationalité</th><th>Naissance</th><th>N° voiture</th><th>Écurie</th><th>Actions</th></tr></thead>
-    <tbody id="pilote-body"><tr><td colspan="7">Chargement…</td></tr></tbody>
-  </table>
-  <section class="form-section">
-    <h2>Ajouter un pilote</h2>
-    <form id="pilote-form" class="admin-form">
-      <input id="new-nom" placeholder="Nom complet" required>
-      <input id="new-nat" placeholder="Nationalité">
-      <input id="new-naiss" type="date">
-      <input id="new-num" type="number" placeholder="N° voiture">
-      <input id="new-ecurie" type="number" placeholder="ID Écurie">
-      <button type="submit" class="btn-submit">➕ Ajouter</button>
-    </form>
-  </section>
-  <div id="edit-modal" class="modal" style="display:none">
-    <div class="modal-box">
-      <h2>Modifier le pilote</h2>
-      <form id="edit-form" class="admin-form">
-        <input type="hidden" id="edit-id">
-        <input id="edit-nom" placeholder="Nom complet" required>
-        <input id="edit-nat" placeholder="Nationalité">
-        <input id="edit-naiss" type="date">
-        <input id="edit-num" type="number" placeholder="N° voiture">
-        <input id="edit-ecurie" type="number" placeholder="ID Écurie">
-        <div class="modal-actions">
-          <button type="submit" class="btn-submit">💾 Sauvegarder</button>
-          <button type="button" id="close-modal" class="btn-cancel">Annuler</button>
+
+  <header class="page-header">
+    <h1>Pilotes</h1>
+    <p class="subtitle">Afficher, ajouter, modifier et supprimer des enregistrements.</p>
+  </header>
+
+  <main class="main-layout">
+    <section class="table-section">
+      <div class="section-header">
+        <h2>Enregistrements</h2>
+        <span class="count-badge" id="count">–</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>ID</th><th>Prénom</th><th>Nom</th><th>Nationalité</th><th>N°</th><th>Écurie ID</th><th>Actions</th></tr></thead>
+          <tbody id="tbody">
+            <tr><td colspan="7" class="loading">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="form-section">
+      <div class="section-header">
+        <h2 id="form-title">Ajouter</h2>
+        <span class="mode-pill" id="mode-pill">AJOUT</span>
+      </div>
+      <form id="crud-form" onsubmit="return false">
+        <input type="hidden" id="f-pk">
+        <div class="fg"><label>Prénom <span class='req'>*</span></label><input type="text" id="f-prenom" placeholder="ex: Charles"></div>
+        <div class="fg"><label>Nom <span class='req'>*</span></label><input type="text" id="f-nom" placeholder="ex: Leclerc"></div>
+        <div class="fg"><label>Nationalité</label><input type="text" id="f-nationalite" placeholder="ex: Monégasque"></div>
+        <div class="fg"><label>N° de course</label><input type="number" id="f-numero" placeholder="ex: 16"></div>
+        <div class="fg"><label>ID Écurie</label><input type="number" id="f-ecurie_id" placeholder="ex: 1"></div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" id="btn-submit">Ajouter</button>
+          <button type="button" class="btn-secondary" id="btn-cancel" style="display:none">Annuler</button>
         </div>
       </form>
-    </div>
-  </div>
-</main>
-<footer>
-  <div class="footer-left"><div class="socials">
-    <a href="https://www.facebook.com/Formula1?locale=fr_FR" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logofacebook.png" alt="Facebook"></a>
-    <a href="https://www.instagram.com/f1" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoinstagram.png" alt="Instagram"></a>
-    <a href="https://x.com/F1?lang=fr" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoX.png" alt="X"></a>
-  </div></div>
-  <div class="footer-center"><p>2003–2025 Formula One World Championship Limited</p></div>
-  <div class="footer-right"><a class="contact" href="Contact.html">Contactez-nous</a></div>
-</footer>
-<script src="js/api.js" defer></script>
-<script src="js/shared.js" defer></script>
-<script src="js/pilote.js" defer></script>
+    </aside>
+  </main>
+
+  <div id="toast"></div>
+  <script src="js/api.js"></script>
+  <script src="js/pilote.js"></script>
 </body>
 </html>

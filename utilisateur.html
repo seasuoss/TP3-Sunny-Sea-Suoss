@@ -3,77 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1 — Utilisateurs</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <title>Utilisateurs — Admin F1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<header class="navbar">
-  <div class="logo"><a href="Acceuil.html"><img src="image/f1logo.png" alt="Logo F1"></a></div>
-  <nav class="menu">
-    <a href="Connexion.html">Connexion</a>
-    <a href="Inscription.html">S&apos;inscrire</a>
-    <div class="dropdown">
-      <button class="dropdown-btn">Équipes F1</button>
-      <div class="dropdown-content">
-        <a href="Info of mercedes.html">Mercedes</a>
-        <a href="Info of ferrari.html">Ferrari</a>
-        <a href="Info of aston martin.html">Aston Martin</a>
-        <a href="Info of redbull.html">RedBull</a>
-        <a href="Info of mclaren.html">McLaren</a>
-        <a href="Info of alpine.html">Alpine</a>
-      </div>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/200px-F1.svg.png" alt="F1">
+      <span>Admin F1</span>
     </div>
-    <a href="index.html" class="btn-admin">⚙️ Admin</a>
+    <div class="nav-links">
+      <a href="ecurie.html">Écuries</a>
+      <a href="pilote.html">Pilotes</a>
+      <a href="course.html">Courses</a>
+      <a href="resultat.html">Résultats</a>
+      <a href="utilisateur.html" class="active">Utilisateurs</a>
+    </div>
   </nav>
-</header>
-<main class="admin-main">
-  <h1>Utilisateurs</h1>
-  <p id="util-message" class="msg"></p>
-  <div class="table-toolbar">
-    <button id="reload-utilisateurs" class="btn-reload">🔄 Actualiser</button>
-  </div>
-  <table class="data-table">
-    <thead><tr><th>ID</th><th>Nom</th><th>Email</th><th>Rôle</th><th>Actions</th></tr></thead>
-    <tbody id="utilisateur-body"><tr><td colspan="5">Chargement…</td></tr></tbody>
-  </table>
-  <section class="form-section">
-    <h2>Ajouter un utilisateur</h2>
-    <form id="util-form" class="admin-form">
-      <input id="new-nom" placeholder="Nom d'utilisateur" required>
-      <input id="new-email" type="email" placeholder="Email">
-      <input id="new-role" placeholder="Rôle (admin / fan)">
-      <input id="new-mdp" type="password" placeholder="Mot de passe">
-      <button type="submit" class="btn-submit">➕ Ajouter</button>
-    </form>
-  </section>
-  <div id="edit-modal" class="modal" style="display:none">
-    <div class="modal-box">
-      <h2>Modifier l'utilisateur</h2>
-      <form id="edit-form" class="admin-form">
-        <input type="hidden" id="edit-id">
-        <input id="edit-nom" placeholder="Nom d'utilisateur" required>
-        <input id="edit-email" type="email" placeholder="Email">
-        <input id="edit-role" placeholder="Rôle">
-        <div class="modal-actions">
-          <button type="submit" class="btn-submit">💾 Sauvegarder</button>
-          <button type="button" id="close-modal" class="btn-cancel">Annuler</button>
+
+  <header class="page-header">
+    <h1>Utilisateurs</h1>
+    <p class="subtitle">Afficher, ajouter, modifier et supprimer des enregistrements.</p>
+  </header>
+
+  <main class="main-layout">
+    <section class="table-section">
+      <div class="section-header">
+        <h2>Enregistrements</h2>
+        <span class="count-badge" id="count">–</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>ID</th><th>Nom d'utilisateur</th><th>Courriel</th><th>Rôle</th><th>Actions</th></tr></thead>
+          <tbody id="tbody">
+            <tr><td colspan="5" class="loading">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="form-section">
+      <div class="section-header">
+        <h2 id="form-title">Ajouter</h2>
+        <span class="mode-pill" id="mode-pill">AJOUT</span>
+      </div>
+      <form id="crud-form" onsubmit="return false">
+        <input type="hidden" id="f-pk">
+        <div class="fg"><label>Nom d'utilisateur <span class='req'>*</span></label><input type="text" id="f-username" placeholder="ex: fan_f1"></div>
+        <div class="fg"><label>Courriel <span class='req'>*</span></label><input type="email" id="f-email" placeholder="ex: fan@f1.com"></div>
+        <div class="fg"><label>Mot de passe</label><input type="password" id="f-mot_de_passe" placeholder="••••••••"></div>
+        <div class="fg"><label>Rôle</label><select id="f-role"><option value="user">Utilisateur</option><option value="admin">Administrateur</option></select></div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" id="btn-submit">Ajouter</button>
+          <button type="button" class="btn-secondary" id="btn-cancel" style="display:none">Annuler</button>
         </div>
       </form>
-    </div>
-  </div>
-</main>
-<footer>
-  <div class="footer-left"><div class="socials">
-    <a href="https://www.facebook.com/Formula1?locale=fr_FR" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logofacebook.png" alt="Facebook"></a>
-    <a href="https://www.instagram.com/f1" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoinstagram.png" alt="Instagram"></a>
-    <a href="https://x.com/F1?lang=fr" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoX.png" alt="X"></a>
-  </div></div>
-  <div class="footer-center"><p>2003–2025 Formula One World Championship Limited</p></div>
-  <div class="footer-right"><a class="contact" href="Contact.html">Contactez-nous</a></div>
-</footer>
-<script src="js/api.js" defer></script>
-<script src="js/shared.js" defer></script>
-<script src="js/utilisateur.js" defer></script>
+    </aside>
+  </main>
+
+  <div id="toast"></div>
+  <script src="js/api.js"></script>
+  <script src="js/utilisateur.js"></script>
 </body>
 </html>

@@ -3,78 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1 — Écuries</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <title>Écuries — Admin F1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<header class="navbar">
-  <div class="logo"><a href="Acceuil.html"><img src="image/f1logo.png" alt="Logo F1"></a></div>
-  <nav class="menu">
-    <a href="Connexion.html">Connexion</a>
-    <a href="Inscription.html">S&apos;inscrire</a>
-    <div class="dropdown">
-      <button class="dropdown-btn">Équipes F1</button>
-      <div class="dropdown-content">
-        <a href="Info of mercedes.html">Mercedes</a>
-        <a href="Info of ferrari.html">Ferrari</a>
-        <a href="Info of aston martin.html">Aston Martin</a>
-        <a href="Info of redbull.html">RedBull</a>
-        <a href="Info of mclaren.html">McLaren</a>
-        <a href="Info of alpine.html">Alpine</a>
-      </div>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/200px-F1.svg.png" alt="F1">
+      <span>Admin F1</span>
     </div>
-    <a href="index.html" class="btn-admin">⚙️ Admin</a>
+    <div class="nav-links">
+      <a href="ecurie.html" class="active">Écuries</a>
+      <a href="pilote.html">Pilotes</a>
+      <a href="course.html">Courses</a>
+      <a href="resultat.html">Résultats</a>
+      <a href="utilisateur.html">Utilisateurs</a>
+    </div>
   </nav>
-</header>
-<main class="admin-main">
-  <h1>Écuries F1</h1>
-  <p id="ecurie-message" class="msg"></p>
-  <div class="table-toolbar">
-    <button id="reload-ecuries" class="btn-reload">🔄 Actualiser</button>
-  </div>
-  <table class="data-table">
-    <thead><tr><th>ID</th><th>Nom</th><th>Pays</th><th>Directeur</th><th>Fondée</th><th>Actions</th></tr></thead>
-    <tbody id="ecurie-body"><tr><td colspan="6">Chargement…</td></tr></tbody>
-  </table>
-  <section class="form-section">
-    <h2>Ajouter une écurie</h2>
-    <form id="ecurie-form" class="admin-form">
-      <input id="new-nom" placeholder="Nom de l'écurie" required>
-      <input id="new-pays" placeholder="Pays">
-      <input id="new-directeur" placeholder="Directeur">
-      <input id="new-annee" type="number" placeholder="Année de fondation">
-      <button type="submit" class="btn-submit">➕ Ajouter</button>
-    </form>
-  </section>
-  <div id="edit-modal" class="modal" style="display:none">
-    <div class="modal-box">
-      <h2>Modifier l'écurie</h2>
-      <form id="edit-form" class="admin-form">
-        <input type="hidden" id="edit-id">
-        <input id="edit-nom" placeholder="Nom de l'écurie" required>
-        <input id="edit-pays" placeholder="Pays">
-        <input id="edit-directeur" placeholder="Directeur">
-        <input id="edit-annee" type="number" placeholder="Année de fondation">
-        <div class="modal-actions">
-          <button type="submit" class="btn-submit">💾 Sauvegarder</button>
-          <button type="button" id="close-modal" class="btn-cancel">Annuler</button>
+
+  <header class="page-header">
+    <h1>Écuries</h1>
+    <p class="subtitle">Afficher, ajouter, modifier et supprimer des enregistrements.</p>
+  </header>
+
+  <main class="main-layout">
+    <section class="table-section">
+      <div class="section-header">
+        <h2>Enregistrements</h2>
+        <span class="count-badge" id="count">–</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>ID</th><th>Nom</th><th>Pays</th><th>Motoriste</th><th>Fondée</th><th>Actions</th></tr></thead>
+          <tbody id="tbody">
+            <tr><td colspan="6" class="loading">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="form-section">
+      <div class="section-header">
+        <h2 id="form-title">Ajouter</h2>
+        <span class="mode-pill" id="mode-pill">AJOUT</span>
+      </div>
+      <form id="crud-form" onsubmit="return false">
+        <input type="hidden" id="f-pk">
+        <div class="fg"><label>Nom de l'écurie <span class='req'>*</span></label><input type="text" id="f-nom" placeholder="ex: Ferrari"></div>
+        <div class="fg"><label>Pays</label><input type="text" id="f-pays" placeholder="ex: Italie"></div>
+        <div class="fg"><label>Motoriste</label><input type="text" id="f-motoriste" placeholder="ex: Ferrari"></div>
+        <div class="fg"><label>Année de fondation</label><input type="number" id="f-annee_fondation" placeholder="ex: 1950"></div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" id="btn-submit">Ajouter</button>
+          <button type="button" class="btn-secondary" id="btn-cancel" style="display:none">Annuler</button>
         </div>
       </form>
-    </div>
-  </div>
-</main>
-<footer>
-  <div class="footer-left"><div class="socials">
-    <a href="https://www.facebook.com/Formula1?locale=fr_FR" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logofacebook.png" alt="Facebook"></a>
-    <a href="https://www.instagram.com/f1" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoinstagram.png" alt="Instagram"></a>
-    <a href="https://x.com/F1?lang=fr" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoX.png" alt="X"></a>
-  </div></div>
-  <div class="footer-center"><p>2003–2025 Formula One World Championship Limited</p></div>
-  <div class="footer-right"><a class="contact" href="Contact.html">Contactez-nous</a></div>
-</footer>
-<script src="js/api.js" defer></script>
-<script src="js/shared.js" defer></script>
-<script src="js/ecurie.js" defer></script>
+    </aside>
+  </main>
+
+  <div id="toast"></div>
+  <script src="js/api.js"></script>
+  <script src="js/ecurie.js"></script>
 </body>
 </html>

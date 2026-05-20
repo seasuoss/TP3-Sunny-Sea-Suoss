@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Courses — Admin F1</title>
+  <title>Résultats — Admin F1</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
@@ -17,14 +17,14 @@
     <div class="nav-links">
       <a href="ecurie.html">Écuries</a>
       <a href="pilote.html">Pilotes</a>
-      <a href="course.html" class="active">Courses</a>
-      <a href="resultat.html">Résultats</a>
+      <a href="course.html">Courses</a>
+      <a href="resultat.html" class="active">Résultats</a>
       <a href="utilisateur.html">Utilisateurs</a>
     </div>
   </nav>
 
   <header class="page-header">
-    <h1>Courses</h1>
+    <h1>Résultats</h1>
     <p class="subtitle">Afficher, ajouter, modifier et supprimer des enregistrements.</p>
   </header>
 
@@ -36,9 +36,9 @@
       </div>
       <div class="table-scroll">
         <table>
-          <thead><tr><th>ID</th><th>Grand Prix</th><th>Circuit</th><th>Date</th><th>Saison</th><th>Actions</th></tr></thead>
+          <thead><tr><th>ID</th><th>Course ID</th><th>Pilote ID</th><th>Position</th><th>Points</th><th>Statut</th><th>Actions</th></tr></thead>
           <tbody id="tbody">
-            <tr><td colspan="6" class="loading">Chargement…</td></tr>
+            <tr><td colspan="7" class="loading">Chargement…</td></tr>
           </tbody>
         </table>
       </div>
@@ -51,10 +51,11 @@
       </div>
       <form id="crud-form" onsubmit="return false">
         <input type="hidden" id="f-pk">
-        <div class="fg"><label>Nom du Grand Prix <span class='req'>*</span></label><input type="text" id="f-nom" placeholder="ex: GP de Monaco"></div>
-        <div class="fg"><label>Circuit / Lieu <span class='req'>*</span></label><input type="text" id="f-lieu" placeholder="ex: Monaco"></div>
-        <div class="fg"><label>Date</label><input type="date" id="f-date_course"></div>
-        <div class="fg"><label>Saison</label><input type="number" id="f-saison" placeholder="ex: 2024"></div>
+        <div class="fg"><label>ID Course <span class='req'>*</span></label><input type="number" id="f-course_id" placeholder="ex: 1"></div>
+        <div class="fg"><label>ID Pilote <span class='req'>*</span></label><input type="number" id="f-pilote_id" placeholder="ex: 3"></div>
+        <div class="fg"><label>Position finale <span class='req'>*</span></label><input type="number" id="f-position" placeholder="ex: 1"></div>
+        <div class="fg"><label>Points</label><input type="number" id="f-points" placeholder="ex: 25"></div>
+        <div class="fg"><label>Statut</label><select id="f-statut"><option value="Finisher">Finisher</option><option value="DNF">DNF — Did Not Finish</option><option value="DNS">DNS — Did Not Start</option><option value="DSQ">DSQ — Disqualifié</option></select></div>
         <div class="form-actions">
           <button type="submit" class="btn-primary" id="btn-submit">Ajouter</button>
           <button type="button" class="btn-secondary" id="btn-cancel" style="display:none">Annuler</button>
@@ -65,6 +66,6 @@
 
   <div id="toast"></div>
   <script src="js/api.js"></script>
-  <script src="js/course.js"></script>
+  <script src="js/resultat.js"></script>
 </body>
 </html>

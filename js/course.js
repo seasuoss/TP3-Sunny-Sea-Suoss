@@ -1,73 +1,64 @@
-async function chargerCourses() {
-  const tbody = document.getElementById('course-body');
-  tbody.innerHTML = '<tr><td colspan="6">Chargement…</td></tr>';
-  try {
-    const items = await getAll('course');
-    if (items.length === 0) { tbody.innerHTML = '<tr><td colspan="6">Aucune course.</td></tr>'; return; }
-    tbody.innerHTML = items.map(c => `
-      <tr>
-        <td>${c.id_course}</td>
-        <td>${escapeHtml(c.nom_course ?? '—')}</td>
-        <td>${escapeHtml(c.circuit ?? '—')}</td>
-        <td>${c.date_course ? c.date_course.substring(0,10) : '—'}</td>
-        <td>${c.nb_tours ?? '—'}</td>
-        <td class="actions">
-          <button class="btn-items" onclick="voirResultats(${c.id_course})">📋 Résultats</button>
-          <button class="btn-delete" onclick="supprimerCourse(${c.id_course})">🗑️</button>
-        </td>
-      </tr>`).join('');
-  } catch (e) {
-    tbody.innerHTML = `<tr><td colspan="6" style="color:#e10600">Erreur : ${e.message}</td></tr>`;
-  }
+// ── course.js ──────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const v = id => ($('f-' + id).value ?? '').trim();
+const set = (id, val) => $('f-' + id).value = val;
+
+function toast(msg, type = 'ok') {
+  const t = $('toast');
+  t.textContent = msg; t.className = 'show ' + type;
+  setTimeout(() => t.className = '', 2800);
 }
 
-async function voirResultats(idCourse) {
-  const tbody = document.getElementById('resultat-body');
-  const section = document.getElementById('resultat-section');
-  document.getElementById('resultat-title').textContent = `Résultats — Course #${idCourse}`;
-  section.style.display = 'block';
-  tbody.innerHTML = '<tr><td colspan="5">Chargement…</td></tr>';
-  try {
-    const items = await getAll(`resultat?q={%22id_course%22:{%22$eq%22:${idCourse}}}`);
-    if (items.length === 0) { tbody.innerHTML = '<tr><td colspan="5">Aucun résultat.</td></tr>'; return; }
-    tbody.innerHTML = items.map(r => `
-      <tr>
-        <td>${r.id_resultat}</td>
-        <td>${r.id_pilote}</td>
-        <td>${r.position ?? '—'}</td>
-        <td>${r.points ?? '—'}</td>
-        <td>${r.temps_total ?? '—'}</td>
-      </tr>`).join('');
-  } catch (e) {
-    tbody.innerHTML = `<tr><td colspan="5" style="color:#e10600">Erreur résultats : ${e.message}</td></tr>`;
-  }
+function resetForm() {
+  $('f-pk').value = '';
+  set('nom',''); set('lieu',''); set('date_course',''); set('saison','');
+  $('form-title').textContent = 'Ajouter';
+  $('mode-pill').textContent = 'AJOUT'; $('mode-pill').classList.remove('edit');
+  $('btn-submit').textContent = 'Ajouter'; $('btn-cancel').style.display = 'none';
 }
 
-async function supprimerCourse(id) {
-  if (!confirm(`Supprimer la course #${id} ?`)) return;
-  try {
-    await remove('course', id);
-    setMessage('course-message', `Course #${id} supprimée.`);
-    chargerCourses();
-  } catch (e) { setMessage('course-message', `Erreur : ${e.message}`, true); }
+async function load() {
+  $('tbody').innerHTML = '<tr><td colspan="6" class="loading">Chargement…</td></tr>';
+  const rows = await getAll('course');
+  $('count').textContent = (rows.length || 0) + ' entrée(s)';
+  if (!rows.length) { $('tbody').innerHTML = '<tr><td colspan="6" class="loading">Aucun enregistrement.</td></tr>'; return; }
+  $('tbody').innerHTML = rows.map(r => `<tr>
+    <td>${r.course_id ?? r.id}</td><td>${r.nom ?? ''}</td><td>${r.lieu ?? ''}</td>
+    <td>${r.date_course ? r.date_course.substring(0,10) : ''}</td><td>${r.saison ?? ''}</td>
+    <td><div class="actions">
+      <button class="btn-edit" onclick="editRow(${r.course_id ?? r.id})">✏️ Modifier</button>
+      <button class="btn-del"  onclick="deleteRow(${r.course_id ?? r.id})">🗑️ Supprimer</button>
+    </div></td></tr>`).join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  chargerCourses();
-  document.getElementById('reload-courses')?.addEventListener('click', chargerCourses);
-  document.getElementById('course-form')?.addEventListener('submit', async e => {
-    e.preventDefault();
-    const body = {
-      nom_course: document.getElementById('new-nom').value,
-      circuit: document.getElementById('new-circuit').value,
-      date_course: document.getElementById('new-date').value,
-      nb_tours: parseInt(document.getElementById('new-tours').value)
-    };
-    try {
-      await create('course', body);
-      setMessage('course-message', 'Course ajoutée.');
-      e.target.reset();
-      chargerCourses();
-    } catch (e) { setMessage('course-message', `Erreur : ${e.message}`, true); }
-  });
+async function editRow(id) {
+  const d = await getById('course', id);
+  if (!d) { toast('Introuvable.', 'err'); return; }
+  $('f-pk').value = d.course_id ?? d.id;
+  set('nom', d.nom ?? ''); set('lieu', d.lieu ?? '');
+  set('date_course', d.date_course ? d.date_course.substring(0,10) : '');
+  set('saison', d.saison ?? '');
+  $('form-title').textContent = 'Modifier';
+  $('mode-pill').textContent = 'MODIFICATION'; $('mode-pill').classList.add('edit');
+  $('btn-submit').textContent = 'Enregistrer'; $('btn-cancel').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function deleteRow(id) {
+  if (!confirm('Supprimer cet enregistrement ?')) return;
+  const ok = await remove('course', id);
+  ok ? (toast('Course supprimée.'), load()) : toast('Erreur suppression.', 'err');
+}
+
+$('crud-form').addEventListener('submit', async () => {
+  const _nom = v('nom'), _lieu = v('lieu'), _date_course = v('date_course'), _saison = v('saison');
+  if (!_nom || !_lieu) { toast('Champs obligatoires manquants.', 'err'); return; }
+  const body = { nom: _nom, lieu: _lieu, date_course: _date_course || null, saison: _saison ? parseInt(_saison) : null };
+  const pk = $('f-pk').value;
+  pk ? (await update('course', pk, body), toast('Course modifiée.'))
+     : (await create('course', body), toast('Course ajoutée.'));
+  resetForm(); load();
 });
+
+$('btn-cancel').addEventListener('click', resetForm);
+load();

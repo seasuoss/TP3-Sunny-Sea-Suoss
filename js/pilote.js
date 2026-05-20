@@ -1,85 +1,67 @@
-async function chargerPilotes(filtre = '') {
-  const tbody = document.getElementById('pilote-body');
-  tbody.innerHTML = '<tr><td colspan="7">Chargement…</td></tr>';
-  try {
-    let items = await getAll('pilote');
-    if (filtre) items = items.filter(p => p.nom_pilote?.toLowerCase().includes(filtre.toLowerCase()));
-    if (items.length === 0) { tbody.innerHTML = '<tr><td colspan="7">Aucun pilote trouvé.</td></tr>'; return; }
-    tbody.innerHTML = items.map(p => `
-      <tr>
-        <td>${p.id_pilote}</td>
-        <td>${escapeHtml(p.nom_pilote)}</td>
-        <td>${escapeHtml(p.nationalite ?? '—')}</td>
-        <td>${p.date_naissance ? p.date_naissance.substring(0,10) : '—'}</td>
-        <td>${p.numero_voiture ?? '—'}</td>
-        <td>${p.id_ecurie ?? '—'}</td>
-        <td class="actions">
-          <button class="btn-edit" onclick="ouvrirModifPilote(${p.id_pilote},'${escapeHtml(p.nom_pilote)}','${escapeHtml(p.nationalite||'')}','${p.date_naissance?.substring(0,10)||''}',${p.numero_voiture??0},${p.id_ecurie??0})">✏️</button>
-          <button class="btn-delete" onclick="supprimerPilote(${p.id_pilote})">🗑️</button>
-        </td>
-      </tr>`).join('');
-  } catch (e) {
-    tbody.innerHTML = `<tr><td colspan="7" style="color:#e10600">Erreur : ${e.message}</td></tr>`;
-  }
+// ── pilote.js ──────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const v = id => ($('f-' + id).value ?? '').trim();
+const set = (id, val) => $('f-' + id).value = val;
+
+function toast(msg, type = 'ok') {
+  const t = $('toast');
+  t.textContent = msg; t.className = 'show ' + type;
+  setTimeout(() => t.className = '', 2800);
 }
 
-async function supprimerPilote(id) {
-  if (!confirm(`Supprimer le pilote #${id} ?`)) return;
-  try {
-    await remove('pilote', id);
-    setMessage('pilote-message', `Pilote #${id} supprimé.`);
-    chargerPilotes();
-  } catch (e) { setMessage('pilote-message', `Erreur : ${e.message}`, true); }
+function resetForm() {
+  $('f-pk').value = '';
+  set('prenom',''); set('nom',''); set('nationalite',''); set('numero',''); set('ecurie_id','');
+  $('form-title').textContent = 'Ajouter';
+  $('mode-pill').textContent = 'AJOUT'; $('mode-pill').classList.remove('edit');
+  $('btn-submit').textContent = 'Ajouter'; $('btn-cancel').style.display = 'none';
 }
 
-function ouvrirModifPilote(id, nom, nat, naiss, num, ecurie) {
-  document.getElementById('edit-id').value = id;
-  document.getElementById('edit-nom').value = nom;
-  document.getElementById('edit-nat').value = nat;
-  document.getElementById('edit-naiss').value = naiss;
-  document.getElementById('edit-num').value = num;
-  document.getElementById('edit-ecurie').value = ecurie;
-  document.getElementById('edit-modal').style.display = 'flex';
+async function load() {
+  $('tbody').innerHTML = '<tr><td colspan="7" class="loading">Chargement…</td></tr>';
+  const rows = await getAll('pilote');
+  $('count').textContent = (rows.length || 0) + ' entrée(s)';
+  if (!rows.length) { $('tbody').innerHTML = '<tr><td colspan="7" class="loading">Aucun enregistrement.</td></tr>'; return; }
+  $('tbody').innerHTML = rows.map(r => `<tr>
+    <td>${r.pilote_id ?? r.id}</td><td>${r.prenom ?? ''}</td><td>${r.nom ?? ''}</td>
+    <td>${r.nationalite ?? ''}</td><td>${r.numero ?? ''}</td><td>${r.ecurie_id ?? ''}</td>
+    <td><div class="actions">
+      <button class="btn-edit" onclick="editRow(${r.pilote_id ?? r.id})">✏️ Modifier</button>
+      <button class="btn-del"  onclick="deleteRow(${r.pilote_id ?? r.id})">🗑️ Supprimer</button>
+    </div></td></tr>`).join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  chargerPilotes();
-  document.getElementById('reload-pilotes')?.addEventListener('click', () => chargerPilotes());
-  document.getElementById('close-modal')?.addEventListener('click', () => {
-    document.getElementById('edit-modal').style.display = 'none';
-  });
-  document.getElementById('search-pilote')?.addEventListener('input', e => chargerPilotes(e.target.value));
-  document.getElementById('edit-form')?.addEventListener('submit', async e => {
-    e.preventDefault();
-    const id = document.getElementById('edit-id').value;
-    const body = {
-      nom_pilote: document.getElementById('edit-nom').value,
-      nationalite: document.getElementById('edit-nat').value,
-      date_naissance: document.getElementById('edit-naiss').value,
-      numero_voiture: parseInt(document.getElementById('edit-num').value),
-      id_ecurie: parseInt(document.getElementById('edit-ecurie').value)
-    };
-    try {
-      await update('pilote', id, body);
-      setMessage('pilote-message', `Pilote #${id} modifié.`);
-      document.getElementById('edit-modal').style.display = 'none';
-      chargerPilotes();
-    } catch (e) { setMessage('pilote-message', `Erreur : ${e.message}`, true); }
-  });
-  document.getElementById('pilote-form')?.addEventListener('submit', async e => {
-    e.preventDefault();
-    const body = {
-      nom_pilote: document.getElementById('new-nom').value,
-      nationalite: document.getElementById('new-nat').value,
-      date_naissance: document.getElementById('new-naiss').value,
-      numero_voiture: parseInt(document.getElementById('new-num').value),
-      id_ecurie: parseInt(document.getElementById('new-ecurie').value)
-    };
-    try {
-      await create('pilote', body);
-      setMessage('pilote-message', 'Pilote ajouté.');
-      e.target.reset();
-      chargerPilotes();
-    } catch (e) { setMessage('pilote-message', `Erreur : ${e.message}`, true); }
-  });
+async function editRow(id) {
+  const d = await getById('pilote', id);
+  if (!d) { toast('Introuvable.', 'err'); return; }
+  $('f-pk').value = d.pilote_id ?? d.id;
+  set('prenom', d.prenom ?? ''); set('nom', d.nom ?? '');
+  set('nationalite', d.nationalite ?? ''); set('numero', d.numero ?? '');
+  set('ecurie_id', d.ecurie_id ?? '');
+  $('form-title').textContent = 'Modifier';
+  $('mode-pill').textContent = 'MODIFICATION'; $('mode-pill').classList.add('edit');
+  $('btn-submit').textContent = 'Enregistrer'; $('btn-cancel').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function deleteRow(id) {
+  if (!confirm('Supprimer cet enregistrement ?')) return;
+  const ok = await remove('pilote', id);
+  ok ? (toast('Pilote supprimé.'), load()) : toast('Erreur suppression.', 'err');
+}
+
+$('crud-form').addEventListener('submit', async () => {
+  const _prenom = v('prenom'), _nom = v('nom'), _nationalite = v('nationalite');
+  const _numero = v('numero'), _ecurie_id = v('ecurie_id');
+  if (!_prenom || !_nom) { toast('Champs obligatoires manquants.', 'err'); return; }
+  const body = { prenom: _prenom, nom: _nom, nationalite: _nationalite,
+    numero: _numero ? parseInt(_numero) : null,
+    ecurie_id: _ecurie_id ? parseInt(_ecurie_id) : null };
+  const pk = $('f-pk').value;
+  pk ? (await update('pilote', pk, body), toast('Pilote modifié.'))
+     : (await create('pilote', body), toast('Pilote ajouté.'));
+  resetForm(); load();
 });
+
+$('btn-cancel').addEventListener('click', resetForm);
+load();
