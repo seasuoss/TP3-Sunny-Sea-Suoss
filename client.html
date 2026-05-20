@@ -8,12 +8,12 @@
 </head>
 <body>
   <nav style="background:#1a1a1a;padding:1rem 2rem;border-bottom:2px solid #e10600;display:flex;align-items:center;gap:2rem;">
-    <a href="admin.html" style="color:#e10600;font-weight:700;text-decoration:none;">← Admin</a>
+    <a href="index.html" style="color:#e10600;font-weight:700;text-decoration:none;">&#8592; Admin</a>
     <span style="color:#aaa;">Gestion des clients</span>
   </nav>
 
   <main class="admin-main">
-    <h1 class="page-title">👥 Clients</h1>
+    <h1 class="page-title">&#128101; Clients</h1>
 
     <!-- Formulaire ajout -->
     <div class="admin-section">
@@ -22,9 +22,9 @@
         <label>Nom<input id="nomclient" type="text" required placeholder="Nom du client"></label>
         <label>Adresse<input id="adresse" type="text" placeholder="Adresse"></label>
         <label>Pays<input id="pays" type="text" placeholder="Canada"></label>
-        <label>Téléphone<input id="telephone" type="text" placeholder="514-555-0000"></label>
+        <label>T&eacute;l&eacute;phone<input id="telephone" type="text" placeholder="514-555-0000"></label>
         <label>Vendeur<input id="vendeur" type="text" placeholder="Vendeur A"></label>
-        <label>Région<input id="region" type="text" placeholder="Montréal"></label>
+        <label>R&eacute;gion<input id="region" type="text" placeholder="Montr&eacute;al"></label>
         <button type="submit" class="btn-submit">Ajouter</button>
       </form>
       <p id="client-message" class="message"></p>
@@ -34,14 +34,12 @@
     <div class="admin-section">
       <div class="section-header">
         <h2>Liste des clients</h2>
-        <button id="reload-clients" class="btn-reload">🔄 Actualiser</button>
+        <button id="reload-clients" class="btn-reload">&#128260; Actualiser</button>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr>
-              <th>#</th><th>Nom</th><th>Téléphone</th><th>Région</th><th>Pays</th><th>Vendeur</th><th>Actions</th>
-            </tr>
+            <tr><th>#</th><th>Nom</th><th>T&eacute;l&eacute;phone</th><th>R&eacute;gion</th><th>Pays</th><th>Vendeur</th><th>Actions</th></tr>
           </thead>
           <tbody id="clients-body">
             <tr><td colspan="7">Chargement&hellip;</td></tr>
@@ -54,12 +52,12 @@
   <!-- Modal modification -->
   <div id="edit-modal" class="modal-overlay" style="display:none;">
     <div class="modal-box">
-      <h3>✏️ Modifier le client</h3>
+      <h3>&#9999;&#65039; Modifier le client</h3>
       <form id="edit-form" class="admin-form" style="grid-template-columns:1fr 1fr;">
         <input type="hidden" id="edit-id">
         <label>Nom<input id="edit-nom" type="text" required></label>
-        <label>Téléphone<input id="edit-tel" type="text"></label>
-        <label>Région<input id="edit-region" type="text"></label>
+        <label>T&eacute;l&eacute;phone<input id="edit-tel" type="text"></label>
+        <label>R&eacute;gion<input id="edit-region" type="text"></label>
         <label>Pays<input id="edit-pays" type="text"></label>
         <label>Vendeur<input id="edit-vendeur" type="text"></label>
         <div class="form-actions" style="grid-column:1/-1;">

@@ -8,21 +8,21 @@
 </head>
 <body>
   <nav style="background:#1a1a1a;padding:1rem 2rem;border-bottom:2px solid #e10600;display:flex;align-items:center;gap:2rem;">
-    <a href="admin.html" style="color:#e10600;font-weight:700;text-decoration:none;">← Admin</a>
+    <a href="index.html" style="color:#e10600;font-weight:700;text-decoration:none;">&#8592; Admin</a>
     <span style="color:#aaa;">Gestion des utilisateurs</span>
   </nav>
 
   <main class="admin-main">
-    <h1 class="page-title">👤 Utilisateurs</h1>
+    <h1 class="page-title">&#128100; Utilisateurs</h1>
 
     <!-- Formulaire ajout -->
     <div class="admin-section">
       <h2>Ajouter un utilisateur</h2>
       <form id="utilisateur-form" class="admin-form">
         <label>Nom<input id="nom" type="text" required placeholder="Dupont"></label>
-        <label>Prénom<input id="prenom" type="text" required placeholder="Alain"></label>
+        <label>Pr&eacute;nom<input id="prenom" type="text" required placeholder="Alain"></label>
         <label>Adresse<input id="adresse" type="text" placeholder="1234 Rue des Ormes"></label>
-        <label>Ville<input id="ville" type="text" placeholder="Montréal"></label>
+        <label>Ville<input id="ville" type="text" placeholder="Montr&eacute;al"></label>
         <label>Courriel<input id="courriel" type="email" required placeholder="utilisateur@exemple.com"></label>
         <label>Mot de passe<input id="mdp" type="password" required placeholder="Mot de passe"></label>
         <button type="submit" class="btn-submit">Ajouter</button>
@@ -34,12 +34,12 @@
     <div class="admin-section">
       <div class="section-header">
         <h2>Liste des utilisateurs</h2>
-        <button id="reload-utilisateurs" class="btn-reload">🔄 Actualiser</button>
+        <button id="reload-utilisateurs" class="btn-reload">&#128260; Actualiser</button>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>#</th><th>Nom</th><th>Prénom</th><th>Ville</th><th>Courriel</th><th>MDP</th><th>Actions</th></tr>
+            <tr><th>#</th><th>Nom</th><th>Pr&eacute;nom</th><th>Ville</th><th>Courriel</th><th>MDP</th><th>Actions</th></tr>
           </thead>
           <tbody id="utilisateurs-body">
             <tr><td colspan="7">Chargement&hellip;</td></tr>
@@ -52,11 +52,11 @@
   <!-- Modal modification -->
   <div id="edit-modal" class="modal-overlay" style="display:none;">
     <div class="modal-box">
-      <h3>✏️ Modifier l&rsquo;utilisateur</h3>
+      <h3>&#9999;&#65039; Modifier l&rsquo;utilisateur</h3>
       <form id="edit-form" class="admin-form" style="grid-template-columns:1fr 1fr;">
         <input type="hidden" id="edit-id">
         <label>Nom<input id="edit-nom" type="text" required></label>
-        <label>Prénom<input id="edit-prenom" type="text" required></label>
+        <label>Pr&eacute;nom<input id="edit-prenom" type="text" required></label>
         <label>Adresse<input id="edit-adresse" type="text"></label>
         <label>Ville<input id="edit-ville" type="text"></label>
         <label style="grid-column:1/-1;">Courriel<input id="edit-courriel" type="email" required></label>
