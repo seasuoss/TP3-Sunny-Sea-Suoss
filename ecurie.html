@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1 — Utilisateurs</title>
+  <title>F1 — Écuries</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -28,33 +28,34 @@
   </nav>
 </header>
 <main class="admin-main">
-  <h1>Utilisateurs</h1>
-  <p id="util-message" class="msg"></p>
+  <h1>Écuries F1</h1>
+  <p id="ecurie-message" class="msg"></p>
   <div class="table-toolbar">
-    <button id="reload-utilisateurs" class="btn-reload">🔄 Actualiser</button>
+    <button id="reload-ecuries" class="btn-reload">🔄 Actualiser</button>
   </div>
   <table class="data-table">
-    <thead><tr><th>ID</th><th>Nom</th><th>Email</th><th>Rôle</th><th>Actions</th></tr></thead>
-    <tbody id="utilisateur-body"><tr><td colspan="5">Chargement…</td></tr></tbody>
+    <thead><tr><th>ID</th><th>Nom</th><th>Pays</th><th>Directeur</th><th>Fondée</th><th>Actions</th></tr></thead>
+    <tbody id="ecurie-body"><tr><td colspan="6">Chargement…</td></tr></tbody>
   </table>
   <section class="form-section">
-    <h2>Ajouter un utilisateur</h2>
-    <form id="util-form" class="admin-form">
-      <input id="new-nom" placeholder="Nom d'utilisateur" required>
-      <input id="new-email" type="email" placeholder="Email">
-      <input id="new-role" placeholder="Rôle (admin / fan)">
-      <input id="new-mdp" type="password" placeholder="Mot de passe">
+    <h2>Ajouter une écurie</h2>
+    <form id="ecurie-form" class="admin-form">
+      <input id="new-nom" placeholder="Nom de l'écurie" required>
+      <input id="new-pays" placeholder="Pays">
+      <input id="new-directeur" placeholder="Directeur">
+      <input id="new-annee" type="number" placeholder="Année de fondation">
       <button type="submit" class="btn-submit">➕ Ajouter</button>
     </form>
   </section>
   <div id="edit-modal" class="modal" style="display:none">
     <div class="modal-box">
-      <h2>Modifier l'utilisateur</h2>
+      <h2>Modifier l'écurie</h2>
       <form id="edit-form" class="admin-form">
         <input type="hidden" id="edit-id">
-        <input id="edit-nom" placeholder="Nom d'utilisateur" required>
-        <input id="edit-email" type="email" placeholder="Email">
-        <input id="edit-role" placeholder="Rôle">
+        <input id="edit-nom" placeholder="Nom de l'écurie" required>
+        <input id="edit-pays" placeholder="Pays">
+        <input id="edit-directeur" placeholder="Directeur">
+        <input id="edit-annee" type="number" placeholder="Année de fondation">
         <div class="modal-actions">
           <button type="submit" class="btn-submit">💾 Sauvegarder</button>
           <button type="button" id="close-modal" class="btn-cancel">Annuler</button>
@@ -74,6 +75,6 @@
 </footer>
 <script src="js/api.js" defer></script>
 <script src="js/shared.js" defer></script>
-<script src="js/utilisateur.js" defer></script>
+<script src="js/ecurie.js" defer></script>
 </body>
 </html>

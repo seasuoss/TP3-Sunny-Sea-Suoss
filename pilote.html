@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1 — Utilisateurs</title>
+  <title>F1 — Pilotes</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -28,33 +28,37 @@
   </nav>
 </header>
 <main class="admin-main">
-  <h1>Utilisateurs</h1>
-  <p id="util-message" class="msg"></p>
+  <h1>Pilotes F1</h1>
+  <p id="pilote-message" class="msg"></p>
   <div class="table-toolbar">
-    <button id="reload-utilisateurs" class="btn-reload">🔄 Actualiser</button>
+    <input id="search-pilote" placeholder="🔍 Rechercher un pilote…" class="search-input">
+    <button id="reload-pilotes" class="btn-reload">🔄 Actualiser</button>
   </div>
   <table class="data-table">
-    <thead><tr><th>ID</th><th>Nom</th><th>Email</th><th>Rôle</th><th>Actions</th></tr></thead>
-    <tbody id="utilisateur-body"><tr><td colspan="5">Chargement…</td></tr></tbody>
+    <thead><tr><th>ID</th><th>Nom</th><th>Nationalité</th><th>Naissance</th><th>N° voiture</th><th>Écurie</th><th>Actions</th></tr></thead>
+    <tbody id="pilote-body"><tr><td colspan="7">Chargement…</td></tr></tbody>
   </table>
   <section class="form-section">
-    <h2>Ajouter un utilisateur</h2>
-    <form id="util-form" class="admin-form">
-      <input id="new-nom" placeholder="Nom d'utilisateur" required>
-      <input id="new-email" type="email" placeholder="Email">
-      <input id="new-role" placeholder="Rôle (admin / fan)">
-      <input id="new-mdp" type="password" placeholder="Mot de passe">
+    <h2>Ajouter un pilote</h2>
+    <form id="pilote-form" class="admin-form">
+      <input id="new-nom" placeholder="Nom complet" required>
+      <input id="new-nat" placeholder="Nationalité">
+      <input id="new-naiss" type="date">
+      <input id="new-num" type="number" placeholder="N° voiture">
+      <input id="new-ecurie" type="number" placeholder="ID Écurie">
       <button type="submit" class="btn-submit">➕ Ajouter</button>
     </form>
   </section>
   <div id="edit-modal" class="modal" style="display:none">
     <div class="modal-box">
-      <h2>Modifier l'utilisateur</h2>
+      <h2>Modifier le pilote</h2>
       <form id="edit-form" class="admin-form">
         <input type="hidden" id="edit-id">
-        <input id="edit-nom" placeholder="Nom d'utilisateur" required>
-        <input id="edit-email" type="email" placeholder="Email">
-        <input id="edit-role" placeholder="Rôle">
+        <input id="edit-nom" placeholder="Nom complet" required>
+        <input id="edit-nat" placeholder="Nationalité">
+        <input id="edit-naiss" type="date">
+        <input id="edit-num" type="number" placeholder="N° voiture">
+        <input id="edit-ecurie" type="number" placeholder="ID Écurie">
         <div class="modal-actions">
           <button type="submit" class="btn-submit">💾 Sauvegarder</button>
           <button type="button" id="close-modal" class="btn-cancel">Annuler</button>
@@ -74,6 +78,6 @@
 </footer>
 <script src="js/api.js" defer></script>
 <script src="js/shared.js" defer></script>
-<script src="js/utilisateur.js" defer></script>
+<script src="js/pilote.js" defer></script>
 </body>
 </html>

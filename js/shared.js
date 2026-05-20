@@ -1,18 +1,14 @@
-function setMessage(elementId, msg, isError = false) {
-  const el = document.getElementById(elementId);
+function setMessage(id, msg, erreur = false) {
+  const el = document.getElementById(id);
   if (!el) return;
   el.textContent = msg;
-  el.style.color = isError ? '#e10600' : '#27ae60';
-  el.style.display = 'block';
-  setTimeout(() => { el.style.display = 'none'; }, 4000);
-}
-
-function formatMoney(val) {
-  return Number(val).toLocaleString('fr-CA', { style: 'currency', currency: 'CAD' });
+  el.style.color = erreur ? '#e10600' : '#00c853';
 }
 
 function escapeHtml(str) {
-  const d = document.createElement('div');
-  d.textContent = str ?? '';
-  return d.innerHTML;
+  return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function formatMoney(val) {
+  return val != null ? Number(val).toLocaleString('fr-CA', { style:'currency', currency:'CAD' }) : '—';
 }

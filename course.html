@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1 — Utilisateurs</title>
+  <title>F1 — Courses</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -28,40 +28,32 @@
   </nav>
 </header>
 <main class="admin-main">
-  <h1>Utilisateurs</h1>
-  <p id="util-message" class="msg"></p>
+  <h1>Courses F1</h1>
+  <p id="course-message" class="msg"></p>
   <div class="table-toolbar">
-    <button id="reload-utilisateurs" class="btn-reload">🔄 Actualiser</button>
+    <button id="reload-courses" class="btn-reload">🔄 Actualiser</button>
   </div>
   <table class="data-table">
-    <thead><tr><th>ID</th><th>Nom</th><th>Email</th><th>Rôle</th><th>Actions</th></tr></thead>
-    <tbody id="utilisateur-body"><tr><td colspan="5">Chargement…</td></tr></tbody>
+    <thead><tr><th>ID</th><th>Nom</th><th>Circuit</th><th>Date</th><th>Tours</th><th>Actions</th></tr></thead>
+    <tbody id="course-body"><tr><td colspan="6">Chargement…</td></tr></tbody>
   </table>
+  <section id="resultat-section" style="display:none" class="sub-section">
+    <h2 id="resultat-title">Résultats</h2>
+    <table class="data-table">
+      <thead><tr><th>ID</th><th>Pilote</th><th>Position</th><th>Points</th><th>Temps total</th></tr></thead>
+      <tbody id="resultat-body"></tbody>
+    </table>
+  </section>
   <section class="form-section">
-    <h2>Ajouter un utilisateur</h2>
-    <form id="util-form" class="admin-form">
-      <input id="new-nom" placeholder="Nom d'utilisateur" required>
-      <input id="new-email" type="email" placeholder="Email">
-      <input id="new-role" placeholder="Rôle (admin / fan)">
-      <input id="new-mdp" type="password" placeholder="Mot de passe">
+    <h2>Ajouter une course</h2>
+    <form id="course-form" class="admin-form">
+      <input id="new-nom" placeholder="Nom de la course" required>
+      <input id="new-circuit" placeholder="Circuit">
+      <input id="new-date" type="date">
+      <input id="new-tours" type="number" placeholder="Nombre de tours">
       <button type="submit" class="btn-submit">➕ Ajouter</button>
     </form>
   </section>
-  <div id="edit-modal" class="modal" style="display:none">
-    <div class="modal-box">
-      <h2>Modifier l'utilisateur</h2>
-      <form id="edit-form" class="admin-form">
-        <input type="hidden" id="edit-id">
-        <input id="edit-nom" placeholder="Nom d'utilisateur" required>
-        <input id="edit-email" type="email" placeholder="Email">
-        <input id="edit-role" placeholder="Rôle">
-        <div class="modal-actions">
-          <button type="submit" class="btn-submit">💾 Sauvegarder</button>
-          <button type="button" id="close-modal" class="btn-cancel">Annuler</button>
-        </div>
-      </form>
-    </div>
-  </div>
 </main>
 <footer>
   <div class="footer-left"><div class="socials">
@@ -74,6 +66,6 @@
 </footer>
 <script src="js/api.js" defer></script>
 <script src="js/shared.js" defer></script>
-<script src="js/utilisateur.js" defer></script>
+<script src="js/course.js" defer></script>
 </body>
 </html>

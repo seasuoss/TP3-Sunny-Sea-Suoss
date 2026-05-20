@@ -1,40 +1,40 @@
-const BASE_URL = 'http://localhost:8080/ords/commande/';
+const BASE_URL = 'http://localhost:8080/ords/f1/';
 
-async function getAll(entity) {
-  const res = await fetch(`${BASE_URL}${entity}/`);
-  if (!res.ok) throw new Error(`Erreur getAll(${entity}) : ${res.status}`);
+async function getAll(entite) {
+  const res = await fetch(`${BASE_URL}${entite}/`);
+  if (!res.ok) throw new Error(`Erreur getAll(${entite}) : ${res.status}`);
   const data = await res.json();
   return data.items ?? [];
 }
 
-async function getById(entity, id) {
-  const res = await fetch(`${BASE_URL}${entity}/${id}`);
-  if (!res.ok) throw new Error(`Erreur getById(${entity}, ${id}) : ${res.status}`);
+async function getById(entite, id) {
+  const res = await fetch(`${BASE_URL}${entite}/${id}`);
+  if (!res.ok) throw new Error(`Erreur getById(${entite}, ${id}) : ${res.status}`);
   return await res.json();
 }
 
-async function create(entity, body) {
-  const res = await fetch(`${BASE_URL}${entity}/`, {
+async function create(entite, body) {
+  const res = await fetch(`${BASE_URL}${entite}/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
-  if (!res.ok) throw new Error(`Erreur create(${entity}) : ${res.status}`);
+  if (!res.ok) throw new Error(`Erreur create(${entite}) : ${res.status}`);
   return await res.json();
 }
 
-async function update(entity, id, body) {
-  const res = await fetch(`${BASE_URL}${entity}/${id}`, {
+async function update(entite, id, body) {
+  const res = await fetch(`${BASE_URL}${entite}/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
-  if (!res.ok) throw new Error(`Erreur update(${entity}, ${id}) : ${res.status}`);
+  if (!res.ok) throw new Error(`Erreur update(${entite}, ${id}) : ${res.status}`);
   return await res.json();
 }
 
-async function remove(entity, id) {
-  const res = await fetch(`${BASE_URL}${entity}/${id}`, { method: 'DELETE' });
-  if (!res.ok) throw new Error(`Erreur remove(${entity}, ${id}) : ${res.status}`);
+async function remove(entite, id) {
+  const res = await fetch(`${BASE_URL}${entite}/${id}`, { method: 'DELETE' });
+  if (!res.ok) throw new Error(`Erreur remove(${entite}, ${id}) : ${res.status}`);
   return true;
 }

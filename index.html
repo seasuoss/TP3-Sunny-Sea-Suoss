@@ -3,43 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portail Admin — TP3 F1</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>F1 — Administration</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-  <nav style="background:#1a1a1a;padding:1rem 2rem;border-bottom:2px solid #e10600;display:flex;align-items:center;gap:2rem;">
-    <span style="color:#e10600;font-weight:700;font-size:1.1rem;">&#9873; Admin TP3</span>
-    <a href="Acceuil.html" style="color:#aaa;text-decoration:none;font-size:.9rem;">&#8592; Retour au site F1</a>
+<header class="navbar">
+  <div class="logo"><a href="Acceuil.html"><img src="image/f1logo.png" alt="Logo F1"></a></div>
+  <nav class="menu">
+    <a href="Connexion.html">Connexion</a>
+    <a href="Inscription.html">S&apos;inscrire</a>
+    <div class="dropdown">
+      <button class="dropdown-btn">Équipes F1</button>
+      <div class="dropdown-content">
+        <a href="Info of mercedes.html">Mercedes</a>
+        <a href="Info of ferrari.html">Ferrari</a>
+        <a href="Info of aston martin.html">Aston Martin</a>
+        <a href="Info of redbull.html">RedBull</a>
+        <a href="Info of mclaren.html">McLaren</a>
+        <a href="Info of alpine.html">Alpine</a>
+      </div>
+    </div>
+    <a href="index.html" class="btn-admin">⚙️ Admin</a>
   </nav>
-
-  <main class="admin-main">
-    <div class="admin-hero">
-      <h1>&#9873; Portail d&rsquo;administration</h1>
-      <p>G&eacute;rez les clients, produits, utilisateurs et paniers de la base de donn&eacute;es Oracle.</p>
+</header>
+<main class="admin-main">
+  <h1>Panneau d'administration</h1>
+  <div class="admin-cards">
+    <a class="admin-card" href="ecurie.html">🏎️<span>Écuries</span></a>
+    <a class="admin-card" href="pilote.html">👤<span>Pilotes</span></a>
+    <a class="admin-card" href="course.html">🏁<span>Courses</span></a>
+    <a class="admin-card" href="utilisateur.html">🔐<span>Utilisateurs</span></a>
+  </div>
+</main>
+<footer>
+  <div class="footer-left">
+    <div class="socials">
+      <a href="https://www.facebook.com/Formula1?locale=fr_FR" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logofacebook.png" alt="Facebook"></a>
+      <a href="https://www.instagram.com/f1" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoinstagram.png" alt="Instagram"></a>
+      <a href="https://x.com/F1?lang=fr" target="_blank" rel="noreferrer"><img src="image/logo reseau-sociaux/logoX.png" alt="X"></a>
     </div>
-
-    <div class="admin-cards">
-      <a href="client.html" class="admin-card">
-        <span class="card-icon">&#128101;</span>
-        <h2>Clients</h2>
-        <p>Lister, ajouter, modifier et supprimer des clients</p>
-      </a>
-      <a href="produit.html" class="admin-card">
-        <span class="card-icon">&#128230;</span>
-        <h2>Produits</h2>
-        <p>G&eacute;rer le catalogue de produits et les stocks</p>
-      </a>
-      <a href="utilisateur.html" class="admin-card">
-        <span class="card-icon">&#128100;</span>
-        <h2>Utilisateurs</h2>
-        <p>G&eacute;rer les comptes utilisateurs du syst&egrave;me</p>
-      </a>
-      <a href="panier.html" class="admin-card">
-        <span class="card-icon">&#128722;</span>
-        <h2>Paniers</h2>
-        <p>Consulter les commandes et les items associ&eacute;s</p>
-      </a>
-    </div>
-  </main>
+  </div>
+  <div class="footer-center">
+    <p>2003–2025 Formula One World Championship Limited</p>
+    <p>Adresse : Bois de Boulogne, 75016 Paris, France</p>
+  </div>
+  <div class="footer-right">
+    <a class="contact" href="Contact.html">Contactez-nous</a>
+  </div>
+</footer>
 </body>
 </html>
